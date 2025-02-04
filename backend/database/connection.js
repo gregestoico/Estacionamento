@@ -1,19 +1,14 @@
-const mysql = require("mysql");
+const mysql = require("mysql2/promise");
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "", // Senha do MySQL (caso tenha)
-    database: "sistema_estacionamento"
+    password: "", // Defina a senha do MySQL, se houver
+    database: "sistema_estacionamento",
+    waitForConnections: true,
+    connectionLimit: 10, // Número máximo de conexões simultâneas
+    queueLimit: 0
 });
 
-connection.connect(err => {
-    if (err) {
-        console.error("Erro ao conectar ao MySQL:", err);
-    } else {
-        console.log("Conectado ao MySQL!");
-    }
-});
-
-module.exports = connection;
+module.exports = pool;
 
