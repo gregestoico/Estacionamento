@@ -1,6 +1,6 @@
 const db = require('../database/connection');
 
-// Classe modelo de Funcionário
+/** Classe modelo de Mensalista */ 
 class ModelFuncionario{
     // Busca um funcionário pelo CPF
     async findByCpf(cpf){
@@ -12,15 +12,13 @@ class ModelFuncionario{
         return result[0]; // Retorna o primeiro resultado
     }
 
-    // Cria um funcionário\
-    async create(cpf, nome, email, senha, cargo){
-        // Array dos valores a serem inseridos
-        const args = [cpf, nome, email, senha, cargo];
+    // Busca um funcionário pelo CPF e cargo
+    async findByCpfAndCargo(cpf, cargo){
+        const args = [cpf, cargo];
         const sql = `
-            INSERT INTO Funcionario (cpf_func, nome_func, email_func, senha, cargo) VALUES (?, ?, ?, ?, ?)
+            SELECT * FROM Funcionario WHERE cpf_func = ? AND cargo = ?
         `;
         const [result] = await db.query(sql, args);
-        console.log('resultado create', result);
         return result[0]; // Retorna o primeiro resultado
     }
 
@@ -43,15 +41,25 @@ class ModelFuncionario{
         return result; // Retorna todos as tuplas encontradas
     }
 
+    // Cria um funcionário\
+    async create(cpf, nome, email, senha, cargo){
+        // Array dos valores a serem inseridos
+        const args = [cpf, nome, email, senha, cargo];
+        const sql = `
+            INSERT INTO Funcionario (cpf_func, nome_func, email_func, senha, cargo) VALUES (?, ?, ?, ?, ?)
+        `;
+        const [result] = await db.query(sql, args);
+        return { id: result.insertId, cpf, nome, email, senha, cargo };
+    }
+
     // Atualiza um funcionário
     async update(cpf, nome, email, cargo, senha){
         const args = [nome, email, cargo, senha, cpf];
-        console.log('args', args);
         const sql = `
             UPDATE Funcionario SET nome_func = ?, email_func = ?, cargo = ?, senha = ? WHERE cpf_func = ?
         `;
         const [result] = await db.query(sql, args);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas
     }
 
     // Exclui um funcionário
@@ -61,17 +69,7 @@ class ModelFuncionario{
             DELETE FROM Funcionario WHERE cpf_func = ?
         `;
         const [result] = await db.query(sql, args);
-        return result[0]; // Retorna o primeiro resultado
-    }
-
-    // Busca um funcionário pelo CPF e cargo
-    async findByCpfAndCargo(cpf, cargo){
-        const args = [cpf, cargo];
-        const sql = `
-            SELECT * FROM Funcionario WHERE cpf_func = ? AND cargo = ?
-        `;
-        const [result] = await db.query(sql, args);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas excluídas
     }
 };
 

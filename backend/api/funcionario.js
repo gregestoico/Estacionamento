@@ -1,25 +1,25 @@
 const serviceFuncionario = require("../services/funcionario");
 
 class ApiFuncionario {
-    async findAll(req, res) {
+    async findByCpf(req, res){
         try {
-            const funcionarios =  await serviceFuncionario.findAll()
+            // O cpf pode vir de dois lugares diferentes:
+            // (1) dos pa   rams, se o gerente estiver buscando os dados de outro usuário (GET na rota /api/funcionario/:cpf)
+            // (2) da session, se for o próprio usuário que estiver buscando seus dados (GET na rota /api/funcionario)
+            const cpf = req.params.cpf || req.session.cpf
+            const funcionario = await serviceFuncionario.findByCpf(cpf)
 
-            res.status(200).send({ funcionarios })
+            res.status(200).send({ funcionario })   //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
     }
 
-    async findByCpf(req, res){
+    async findAll(req, res) {
         try {
-            // O cpf pode vir de dois lugares diferentes:
-            // (1) dos pa   rams, se o admin estiver buscando os dados de outro usuário (GET na rota /api/funcionario/:cpf)
-            // (2) da session, se for o próprio usuário que estiver buscando seus dados (GET na rota /api/funcionario)
-            const cpf = req.params.cpf || req.session.cpf
-            const funcionario = await serviceFuncionario.findByCpf(cpf)
+            const funcionarios =  await serviceFuncionario.findAll()
 
-            res.status(200).send({ funcionario })
+            res.status(200).send({ funcionarios })  //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
@@ -28,9 +28,9 @@ class ApiFuncionario {
     async create(req, res) {
         try {
             const { cpf, nome, email, cargo, senha } = req.body
-            const funcionario = await serviceFuncionario.create(cpf, nome, email, cargo, senha)
+            const result = await serviceFuncionario.create(cpf, nome, email, cargo, senha)
 
-            res.status(200).send({ funcionario })
+            res.status(200).send({ result })   //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
@@ -38,14 +38,14 @@ class ApiFuncionario {
 
     async update(req, res) {
         try {
-            // O id pode vir de dois lugares diferentes:
+            // O cpf pode vir de dois lugares diferentes:
             //  (1) da session, se for o prórpio usuário que estiver alterando seus dados (PUT na rota /api/funcionario)
-            //  (2) dos params, se o admin estiver alterando os dados de outro usuário (PUT na rota /api/funcionario/:cpf)
+            //  (2) dos params, se o gerente estiver alterando os dados de outro usuário (PUT na rota /api/funcionario/:cpf)
             const cpf = req.params.cpf || req.session.cpf
             const { nome, email, cargo, senha } = req.body
-            const funcionario = await serviceFuncionario.update(cpf, nome, email, cargo, senha)
+            const result = await serviceFuncionario.update(cpf, nome, email, cargo, senha)
 
-            res.status(200).send({ funcionario })
+            res.status(200).send({ result })   //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
@@ -56,7 +56,7 @@ class ApiFuncionario {
             const cpf = req.params.cpf || req.session.cpf
             const funcionario = await serviceFuncionario.delete(cpf)
 
-            res.status(200).send({ funcionario })
+            res.status(200).send({ funcionario })   //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
@@ -67,7 +67,7 @@ class ApiFuncionario {
             const { email, senha } = req.body;
             const token = await serviceFuncionario.login(email, senha)
 
-            res.status(200).send({ token })
+            res.status(200).send({ token }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }

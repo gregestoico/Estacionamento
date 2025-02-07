@@ -4,14 +4,14 @@ const connection = require("./database/connection");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 // Routes
-const funcionarioRouter = require("./routes/funcionario");
-// const mensalistaRouter = require("./routes/mensalista");
-// const planoRouter = require("./routes/plano");
-// const faturaRouter = require("./routes/fatura");
-// const rotativoRouter = require("./routes/rotativo");
-// const vagaRouter = require("./routes/vaga");
-// const veiculoRouter = require("./routes/veiculo");
-// const entradaRouter = require("./routes/entrada");
+const routerFuncionario = require("./routes/funcionario");
+const routerMensalista = require("./routes/mensalista");
+const routerPlano = require("./routes/plano");
+const routerFatura = require("./routes/fatura");
+const routerRotativo = require("./routes/rotativo");
+const routerVaga = require("./routes/vaga");
+const routerVeiculo = require("./routes/veiculo");
+const routerEntrada = require("./routes/entrada");
 
 // API do funcionario, dedicada para login
 const apiFuncionario = require("./api/funcionario");
@@ -27,14 +27,14 @@ app.use(bodyParser.json());
 app.use("/api/login", apiFuncionario.login);
 
 // Rotas protegidas
-app.use('/api/funcionario', funcionarioRouter);
-// app.use('/api/mensalista', mensalistaRouter);
-// app.use('/api/plano', planoRouter);
-// app.use('/api/fatura', faturaRouter);
-// app.use('/api/rotativo', rotativoRouter);
-// app.use('/api/vaga', vagaRouter);
-// app.use('/api/veiculo', veiculoRouter);
-// app.use('/api/entrada', entradaRouter);
+app.use('/api/funcionario', routerFuncionario);
+app.use('/api/mensalista', routerMensalista);
+app.use('/api/plano', routerPlano);
+app.use('/api/fatura', routerFatura);
+app.use('/api/rotativo', routerRotativo);
+app.use('/api/vaga', routerVaga);
+app.use('/api/veiculo', routerVeiculo);
+app.use('/api/entrada', routerEntrada);
 
 
 // Verificando a conexão com o banco de dados

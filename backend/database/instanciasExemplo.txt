@@ -1,0 +1,189 @@
+Tabela FUNCIONARIO
+[
+  {
+    "cpf": "12345678900",
+    "nome": "João Silva",
+    "email": "joao.silva@xpto.com",
+    "cargo": "atendente",
+    "senha": "senha123"
+  },
+  {
+    "cpf": "98765432100",
+    "nome": "Maria Souza",
+    "email": "maria.souza@xpto.com",
+    "cargo": "gerente",
+    "senha": "senha456"
+  },
+  {
+    "cpf": "45678912300",
+    "nome": "Carlos Pereira",
+    "email": "carlos.pereira@xpto.com",
+    "cargo": "atendente",
+    "senha": "senha789"
+  }
+]
+
+
+Tabela MENSALISTA
+[
+  {
+    "cpf": "11122233344",
+    "nome": "Ana Oliveira",
+    "email": "ana.oliveira@gmail.com",
+    "telefone": "11987654321",
+    "cod_plano": 1
+  },
+  {
+    "cpf": "55566677788",
+    "nome": "Bruno Costa",
+    "email": "bruno.costa@gmail.com",
+    "telefone": "11912345678",
+    "cod_plano": 2
+  },
+  {
+    "cpf": "99988877766",
+    "nome": "Carla Mendes",
+    "email": "carla.mendes@gmail.com",
+    "telefone": "11998765432",
+    "cod_plano": 3
+  }
+]
+
+
+Tabela PLANO
+[
+  {
+    "cod_plano": 1,
+    "turno": "Integral",
+    "preco_mensal": 300.00
+  },
+  {
+    "cod_plano": 2,
+    "turno": "Diurno",
+    "preco_mensal": 200.00
+  },
+  {
+    "cod_plano": 3,
+    "turno": "Noturno",
+    "preco_mensal": 150.00
+  }
+]
+
+
+Tabela FATURA
+[
+  {
+    "cod_fatura": 1,
+    "data_venc": "2024-01-10",
+    "data_pag": "2024-01-09",
+    "cpf_cli": "11122233344"
+  },
+  {
+    "cod_fatura": 2,
+    "data_venc": "2024-01-10",
+    "data_pag": null,
+    "cpf_cli": "55566677788"
+  },
+  {
+    "cod_fatura": 3,
+    "data_venc": "2024-01-10",
+    "data_pag": "2024-01-08",
+    "cpf_cli": "99988877766"
+  }
+]
+
+Tabela PRECO_ROTATIVO
+[
+  {
+    "tipo_veic": "Carro",
+    "valor_hora": 10.00
+  },
+  {
+    "tipo_veic": "Moto",
+    "valor_hora": 5.00
+  },
+  {
+    "tipo_veic": "Caminhonete",
+    "valor_hora": 15.00
+  }
+]
+
+Tabela VAGA
+[
+  {
+    "cod_vaga": 1,
+    "tipo_veic": "Carro",
+    "situacao": "Livre"
+  },
+  {
+    "cod_vaga": 2,
+    "tipo_veic": "Moto",
+    "situacao": "Ocupada"
+  },
+  {
+    "cod_vaga": 3,
+    "tipo_veic": "Carro",
+    "situacao": "Ocupada"
+  },
+  {
+    "cod_vaga": 4,
+    "tipo_veic": "Caminhonete",
+    "situacao": "Livre"
+  }
+]
+
+Tabela VEICULO
+[
+  {
+    "placa": "ABC1234",
+    "modelo": "Honda Civic",
+    "cor": "Preto",
+    "tipo_veic": "Carro",
+    "cpf_cli": "11122233344"
+  },
+  {
+    "placa": "XYZ5678",
+    "modelo": "Yamaha Fazer",
+    "cor": "Azul",
+    "tipo_veic": "Moto",
+    "cpf_cli": "55566677788"
+  },
+  {
+    "placa": "DEF9012",
+    "modelo": "Fiat Toro",
+    "cor": "Branco",
+    "tipo_veic": "Caminhonete",
+    "cpf_cli": "99988877766"
+  }
+]
+
+Tabela ENTRADA
+[
+  {
+    "id_entrada": 1,
+    "hora_entrada": "2024-02-05T08:00:00",
+    "hora_saida": "2024-02-05T12:00:00",
+    "valor_cobrado": 40.00,
+    "placa_veic": "ABC1234",
+    "cod_vaga": 1,
+    "cpf_func": "12345678900"
+  },
+  {
+    "id_entrada": 2,
+    "hora_entrada": "2024-02-05T09:30:00",
+    "hora_saida": null,
+    "valor_cobrado": null,
+    "placa_veic": "XYZ5678",
+    "cod_vaga": 2,
+    "cpf_func": "98765432100"
+  },
+  {
+    "id_entrada": 3,
+    "hora_entrada": "2024-02-05T10:00:00",
+    "hora_saida": "2024-02-05T14:00:00",
+    "valor_cobrado": 60.00,
+    "placa_veic": "DEF9012",
+    "cod_vaga": 3,
+    "cpf_func": "45678912300"
+  }
+]

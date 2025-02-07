@@ -3,7 +3,7 @@ const modelFuncionario = require("../models/funcionario")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const cargos = ['admin', 'atendente']
+const cargos = ['gerente', 'atendente']
 const salt = 12
 const secretKey = process.env.SECRETKEY || 'M1NH4S3NH4S3CRT4'
 
@@ -39,7 +39,6 @@ class ServiceFuncionario {
     }
 
     async update(cpf, nome, email, cargo, senha) {
-        console.log('cpf', cpf)
         const rowFuncionario = await this.findByCpf(cpf)
         if(!rowFuncionario) {
             throw new Error("Funcionário não encontrado")
@@ -51,10 +50,9 @@ class ServiceFuncionario {
 
         // Substitui o cargo atual pelo novo cargo
         if(cargo && rowFuncionario.cargo !== cargo) {
-            // TOFIX: Um atendente pode alterar o seu próprio cargo
+            // TO_FIX: Um atendente pode alterar o seu próprio cargo
             rowFuncionario.cargo = cargo
         }
-        console.log('rowFuncionario', rowFuncionario)
         rowFuncionario.nome_func = nome || rowFuncionario.nome_func
         rowFuncionario.email_func = email || rowFuncionario.email_func
         rowFuncionario.senha = senha || rowFuncionario.senha
@@ -70,12 +68,12 @@ class ServiceFuncionario {
 
     async delete(cpf) {
         const rowFuncionario = await this.findByCpf(cpf)
-
+        // Verifica se o funcionário existe
         if(!rowFuncionario) {
             throw new Error("Funcionario não encontrado")
         }
 
-        modelFuncionario.delete(cpf);
+        return modelFuncionario.delete(cpf);
     }
 
     async login(email, senha) {
