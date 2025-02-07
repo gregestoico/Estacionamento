@@ -2,7 +2,7 @@ const db = require('../database/connection');
 
 /** Classe modelo de Mensalista */ 
 class ModelFuncionario{
-    // Busca um funcionário pelo CPF
+    /** Busca um funcionário pelo CPF */
     async findByCpf(cpf){
         const args = [cpf];
         const sql = `
@@ -12,7 +12,7 @@ class ModelFuncionario{
         return result[0]; // Retorna o primeiro resultado
     }
 
-    // Busca um funcionário pelo CPF e cargo
+    /** Busca um funcionário pelo CPF e cargo */
     async findByCpfAndCargo(cpf, cargo){
         const args = [cpf, cargo];
         const sql = `
@@ -22,7 +22,7 @@ class ModelFuncionario{
         return result[0]; // Retorna o primeiro resultado
     }
 
-    // Busca um funcionário pelo email
+    /** Busca um funcionário pelo email */
     async findByEmail(email){
         const args = [email];
         const sql = `
@@ -32,7 +32,7 @@ class ModelFuncionario{
         return result[0]; // Retorna o primeiro resultado
     }
 
-    // Busca todos os funcionários
+    /** Busca todos os funcionários cadastrados */
     async findAll(){
         const sql = `
             SELECT * FROM Funcionario
@@ -41,7 +41,7 @@ class ModelFuncionario{
         return result; // Retorna todos as tuplas encontradas
     }
 
-    // Cria um funcionário\
+    /** Cria um funcionário */
     async create(cpf, nome, email, senha, cargo){
         // Array dos valores a serem inseridos
         const args = [cpf, nome, email, senha, cargo];
@@ -52,7 +52,7 @@ class ModelFuncionario{
         return { id: result.insertId, cpf, nome, email, senha, cargo };
     }
 
-    // Atualiza um funcionário
+    /** Atualiza um funcionário */
     async update(cpf, nome, email, cargo, senha){
         const args = [nome, email, cargo, senha, cpf];
         const sql = `
@@ -62,7 +62,7 @@ class ModelFuncionario{
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas
     }
 
-    // Exclui um funcionário
+    /** Exclui um funcionário */
     async delete(cpf){
         const args = [cpf];
         const sql = `

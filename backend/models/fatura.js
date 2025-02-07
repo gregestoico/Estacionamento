@@ -12,7 +12,7 @@ class ModelFatura{
         return result[0]; // Retorna o primeiro resultado
     }
 
-    /** Busca todos os faturas cadastrados  */
+    /** Busca todas as faturas cadastradas  */
     async findAll(){
         const sql = `
             SELECT * FROM Fatura

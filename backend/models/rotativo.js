@@ -1,6 +1,6 @@
 const db = require('../database/connection');
 
-/** Classe modelo de Preco_Rotativo */ 
+/** Classe modelo de Preco do Rotativo */ 
 class ModelRotativo{
     /**  Busca um valor da tabela de rotativo pelo tipo de veículo */
     async findByTipo(tipo_veic){
@@ -43,7 +43,7 @@ class ModelRotativo{
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas
     }
 
-    /** Exclui um valor por tipo mensal */
+    /** Exclui um valor por tipo */
     async delete(tipo_veic){
         const args = [tipo_veic];
         const sql = `

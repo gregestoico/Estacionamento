@@ -19,7 +19,7 @@ class ServiceMensalista {
         } else if(!telefone) {
             throw new Error("Favor informar o telefone")
         } else if(!cod_plano) {
-            throw new Error("Favor informar o código do plano")
+            throw new Error("Favor informar o codigo do plano")
         }
 
         return modelMensalista.create(cpf, nome, email, telefone, cod_plano)
