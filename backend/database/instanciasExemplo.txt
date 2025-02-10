@@ -103,7 +103,7 @@ Tabela PRECO_ROTATIVO
     "valor_hora": 5.00
   },
   {
-    "tipo_veic": "Caminhonete",
+    "tipo_veic": "Caminhão",
     "valor_hora": 15.00
   }
 ]

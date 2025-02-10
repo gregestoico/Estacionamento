@@ -29,7 +29,7 @@ class ModelPlano{
             INSERT INTO Plano (cod_plano, turno, preco_mensal) VALUES (?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas criadas
     }
 
     /** Atualiza um plano mensal */

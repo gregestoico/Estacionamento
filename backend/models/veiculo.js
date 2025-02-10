@@ -29,15 +29,14 @@ class ModelVeiculo{
             INSERT INTO Veiculo (placa, modelo, cor, tipo_veic, cpf_cli) VALUES (?, ?, ?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
-        console.log('resultado create', result);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas inseridas
     }
 
     /** Atualiza os dados de um veículo */
     async update(placa, modelo, cor, tipo_veic, cpf_cli){
         const args = [modelo, cor, tipo_veic, cpf_cli, placa];
         const sql = `
-            UPDATE Veiculo SET modelo = ?, cor = ?, cpf_cli = ?, tipo_veic = ? WHERE placa = ?
+            UPDATE Veiculo SET modelo = ?, cor = ?, tipo_veic = ?, cpf_cli = ?  WHERE placa = ?
         `;
         const [result] = await db.query(sql, args);
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas

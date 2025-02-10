@@ -29,8 +29,7 @@ class ModelMensalista{
             INSERT INTO Mensalista (cpf_cli, nome_cli, email_cli, telefone_cli, cod_plano) VALUES (?, ?, ?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
-        console.log('resultado create', result);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas inseridas
     }
 
     /** Atualiza um cliente mensalista */

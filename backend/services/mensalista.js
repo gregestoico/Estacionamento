@@ -51,7 +51,6 @@ class ServiceMensalista {
         if(!rowMensalista) {
             throw new Error("Cliente mensalista não encontrado")
         }
-
         return modelMensalista.delete(cpf);
     }
 }

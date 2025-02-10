@@ -25,9 +25,9 @@ class ApiPlano {
     async create(req, res) {
         try {
             const { cod_plano, turno, preco_mensal } = req.body
-            const plano = await servicePlano.create(cod_plano, turno, preco_mensal)
+            const result = await servicePlano.create(cod_plano, turno, preco_mensal)
 
-            res.status(200).send({ plano }) //Envia a resposta
+            res.status(200).send({ result }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
@@ -48,9 +48,9 @@ class ApiPlano {
     async delete(req, res) {
         try {
             const cod_plano = req.params.cod
-            const plano = await servicePlano.delete(cod_plano)
+            const result = await servicePlano.delete(cod_plano)
 
-            res.status(200).send({ plano }) //Envia a resposta
+            res.status(200).send({ result }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }

@@ -29,14 +29,14 @@ class ModelFatura{
             INSERT INTO Fatura (cod_fatura, data_venc, data_pag, cpf_cli) VALUES (?, ?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas inseridas
     }
 
     /** Atualiza uma fatura */
     async update(cod_fatura, data_venc, data_pag, cpf_cli){
         const args = [data_venc, data_pag, cpf_cli, cod_fatura];
         const sql = `
-            UPDATE Fatura SET data_venc = ?, data_pag = ?, cpf_cli = ?, WHERE cod_fatura = ?
+            UPDATE Fatura SET data_venc = ?, data_pag = ?, cpf_cli = ? WHERE cod_fatura = ?
         `;
         const [result] = await db.query(sql, args);
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas

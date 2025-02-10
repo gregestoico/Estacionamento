@@ -25,9 +25,9 @@ class ApiMensalista {
     async create(req, res) {
         try {
             const { cpf, nome, email, telefone, cod_plano } = req.body
-            const mensalista = await serviceMensalista.create(cpf, nome, email, telefone, cod_plano)
+            const result = await serviceMensalista.create(cpf, nome, email, telefone, cod_plano)
 
-            res.status(200).send({ mensalista }) //Envia a resposta
+            res.status(200).send({ result }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
@@ -48,9 +48,9 @@ class ApiMensalista {
     async delete(req, res) {
         try {
             const {cpf} = req.params
-            const mensalista = await serviceMensalista.delete(cpf)
+            const result = await serviceMensalista.delete(cpf)
 
-            res.status(200).send({ mensalista }) //Envia a resposta
+            res.status(200).send({ result }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }

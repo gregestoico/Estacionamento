@@ -49,7 +49,7 @@ class ModelFuncionario{
             INSERT INTO Funcionario (cpf_func, nome_func, email_func, senha, cargo) VALUES (?, ?, ?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
-        return { id: result.insertId, cpf, nome, email, senha, cargo };
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas criadas
     }
 
     /** Atualiza um funcionário */

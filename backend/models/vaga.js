@@ -29,8 +29,7 @@ class ModelVaga{
             INSERT INTO Vaga (cod_vaga, tipo_veic, situacao) VALUES (?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
-        console.log('resultado create', result);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas inseridas
     }
 
     /** Atualiza uma vaga */

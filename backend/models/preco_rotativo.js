@@ -1,7 +1,7 @@
 const db = require('../database/connection');
 
 /** Classe modelo de Preco do Rotativo */ 
-class ModelRotativo{
+class ModelPrecoRotativo{
     /**  Busca um valor da tabela de rotativo pelo tipo de veículo */
     async findByTipo(tipo_veic){
         const args = [tipo_veic];
@@ -29,8 +29,7 @@ class ModelRotativo{
             INSERT INTO Preco_Rotativo (tipo_veic, valor_hora) VALUES (?, ?)
         `;
         const [result] = await db.query(sql, args);
-        console.log('resultado create', result);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas inseridas
     }
 
     /** Atualiza um valor por tipo de veículo */
@@ -54,4 +53,4 @@ class ModelRotativo{
     }
 };
 
-module.exports = new ModelRotativo()
+module.exports = new ModelPrecoRotativo()

@@ -29,8 +29,7 @@ class ModelEntrada{
             INSERT INTO Entrada (id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func) VALUES (?, ?, ?, ?, ?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
-        console.log('resultado create', result);
-        return result[0]; // Retorna o primeiro resultado
+        return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas inseridas
     }
 
     /** Atualiza uma entrada registrada */

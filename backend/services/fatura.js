@@ -9,21 +9,20 @@ class ServiceFatura {
         return await modelFatura.findAll()
     }
 
-    async create(cod_fatura, data_venc, data_pag, cod_cli) {
+    async create(cod_fatura, data_venc, data_pag, cpf_cli) {
+        // A Data de pagamento pode ser inserida nula
         if(!cod_fatura) {
             throw new Error("Favor informar o codigo da fatura) {")
         } else if(!data_venc) {
             throw new Error("Favor informar a data de vencimento")
-        } else if(!data_pag) {
-            throw new Error("Favor informar a data de pagamento")
-        } else if(!cod_cli) {
-            throw new Error("Favor informar o codigo do cliente")
+        } else if(!cpf_cli) {
+            throw new Error("Favor informar o CPF do cliente")
         }
 
-        return modelFatura.create(cod_fatura, data_venc, data_pag, cod_cli)
+        return modelFatura.create(cod_fatura, data_venc, data_pag, cpf_cli)
     }
 
-    async update(cod_fatura, data_venc, data_pag, cod_cli) {
+    async update(cod_fatura, data_venc, data_pag, cpf_cli) {
         const rowFatura = await this.findByCod(cod_fatura)
         if(!rowFatura) {
             throw new Error("Fatura não encontrado")
@@ -33,13 +32,13 @@ class ServiceFatura {
         rowFatura.data_venc = data_venc || rowFatura.data_venc
         rowFatura.data_venc = data_venc || rowFatura.data_venc
         rowFatura.data_pag = data_pag || rowFatura.data_pag
-        rowFatura.cpd_cli = cpd_cli || rowFatura.cpd_cli
+        rowFatura.cpf_cli = cpf_cli || rowFatura.cpf_cli
 
         return await modelFatura.update(
             rowFatura.cod_fatura,
             rowFatura.data_venc,
             rowFatura.data_pag,
-            rowFatura.cpd_cli
+            rowFatura.cpf_cli
         )
     }
 

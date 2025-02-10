@@ -54,9 +54,9 @@ class ApiFuncionario {
     async delete(req, res) {
         try {
             const cpf = req.params.cpf || req.session.cpf
-            const funcionario = await serviceFuncionario.delete(cpf)
+            const result = await serviceFuncionario.delete(cpf)
 
-            res.status(200).send({ funcionario })   //Envia a resposta
+            res.status(200).send({ result })   //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }
