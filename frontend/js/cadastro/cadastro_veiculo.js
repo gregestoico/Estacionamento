@@ -1,0 +1,113 @@
+const PORT = 3000; // Porta do backend
+const apiUrl = `http://localhost:${PORT}/api`; // URL da API
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const form = document.getElementById('client-form');
+    const vehicleTypeSelect = document.getElementById('vehicle-type');
+    // Recupera o CPF do cliente do sessionStorage
+    const cpf_cli = sessionStorage.getItem('cpf_cli');
+
+    /** Inicializa o campo de CPF do cliente associado no formulário */
+    function initializeCPF() {
+        // Insere o CPF do cliente no campo do formulário
+        const cpfElement = document.getElementById('cpf_cli');
+        cpfElement.value = cpf_cli || 'CPF não informado';
+    };
+
+    /** Carrega os tipos de veículos */
+    async function loadVehiculeTypes() {
+        try {
+            console.log('Iniciando carregamento dos tipos de veículos...'); // debug
+            // Obtém o token do localStorage
+            const token = localStorage.getItem('token');
+            const response = await fetch(apiUrl + '/veiculo/tipos', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                }
+            });
+            console.log('Resposta da API:', response); // debug
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            console.log('Dados recebidos:', data); // debug
+            tiposVeiculos = data.tipos;
+            
+            if (tiposVeiculos.length === 0) {
+                console.log('Nenhum tipo encontrado'); // debug
+                return;
+            }
+
+            tiposVeiculos.forEach(tipo => {
+                const option = document.createElement('option');
+                option.value = tipo;
+                option.textContent = tipo;
+                vehicleTypeSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Erro ao carregar tipos de veículos:', error);
+        }
+    }
+
+    /** Valida a placa do veículo */
+    function validatePlate(plate) {
+        // Verifica se a placa é do modelo Mercosul ou se é do modelo antigo
+        const regexAntiga = /^[A-Z]{3}\d{4}$/;
+        const regexMercosul = /^[A-Z]{3}\d[A-Z]\d{2}$/;
+        verify = regexAntiga.test(plate) || regexMercosul.test(plate);
+        if (!verify) {
+            alert('Placa inválida! Informe uma placa no formato AAA9999 ou ABC1D23');
+            return false;
+        }
+        return true;
+    }
+    
+    // Submit do formulário
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            placa: document.getElementById('plate').value,
+            modelo: document.getElementById('model').value,
+            cor: document.getElementById('color').value,
+            tipo_veic: document.getElementById('vehicle-type').value,
+            cpf_cli: cpf_cli
+        };
+
+        // Valida a placa
+        if (!validatePlate(formData.placa)) {
+            return;
+        }
+
+        // Envia os dados do formulário para a API
+        try {
+            // Obtém o token do localStorage
+            const token = localStorage.getItem('token');
+            const response = await fetch(apiUrl + '/veiculo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            if (response.ok) {
+                alert('Cadastro realizado com sucesso!');
+                form.reset();
+            } else {
+                alert('Erro ao realizar cadastro');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao realizar cadastro');
+        }
+    });
+    
+    // Execuçãoi das funções de inicialização
+    await loadVehiculeTypes();
+    initializeCPF(cpf_cli);
+});

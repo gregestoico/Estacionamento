@@ -3,6 +3,9 @@ const routerVeiculo = express.Router();
 const apiVeiculo = require("../api/veiculo");
 const authMiddleware = require('../middleware/auth');
 
+// Rotas auxiliares
+routerVeiculo.get('/tipos', authMiddleware(), apiVeiculo.findTipos)
+
 // Rotas do usuario por si só (funcionários com qualquer cargo podem acessar)
 routerVeiculo.get('/:placa', authMiddleware(), apiVeiculo.findByPlaca)
 routerVeiculo.get('/', authMiddleware(), apiVeiculo.findAll)

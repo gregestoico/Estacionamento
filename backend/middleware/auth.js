@@ -15,7 +15,6 @@ const secretKey = process.env.SECRETKEY || 'M1NH4S3NH4S3CRT4'
 function authMiddleware(cargo) {
     return (req, res, next) => {
         const token = req.headers['authorization']
-
         if(!token) {
            res.status(400).json({ msg: 'Token inválido ou não fornecido' })
            return

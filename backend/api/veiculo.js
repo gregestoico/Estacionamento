@@ -55,6 +55,15 @@ class ApiVeiculo {
             res.status(500).send({ msg: error.message })
         }
     }
+
+    async findTipos(req, res) {
+        try {
+            const tipos = await serviceVeiculo.findTipos()
+            res.status(200).send({ tipos }) //Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+    }
 }
 
 module.exports = new ApiVeiculo();

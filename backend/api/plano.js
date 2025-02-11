@@ -15,7 +15,7 @@ class ApiPlano {
     async findAll(req, res) {
         try {
             const planos =  await servicePlano.findAll()
-
+            
             res.status(200).send({ planos }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message }) 

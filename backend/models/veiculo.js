@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const db = require('../database/connection');
 
 /** Classe modelo de Veiculo */ 
@@ -50,6 +52,17 @@ class ModelVeiculo{
         `;
         const [result] = await db.query(sql, args);
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas excluídas
+    }
+
+    /** Retorna os tipos de veículos cadastrados */
+    async findTipos(){
+        // Lê o arquivo com a query SQL
+        const filePath = path.join(__dirname, '../database/queries/tiposVeiculos.txt');
+        const sql = fs.readFileSync(filePath, 'utf-8');
+        
+        const [row] = await db.query(sql);
+        const tipos = row.map(row => row.tipo_veic); // Extrai apenas os tipos de veículos
+        return tipos; // Retorna todos os tipos de veículos
     }
 };
 

@@ -1,24 +1,37 @@
-document.getElementById("loginForm").addEventListener("submit", function(event) {
+const PORT = 3000; // Porta do backend
+const apiUrl = `http://localhost:${PORT}/api`; // URL da API
+
+document.getElementById('loginForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    let email = document.getElementById("email").value;
-    let senha = document.getElementById("senha").value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+    console.log('Email:', email);
+    console.log('Senha:', senha);
+    try {
+        const response = await fetch(apiUrl + '/login', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, senha })
+        });
 
-    fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email, senha: senha })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = "pages/dashboard.html"; // Redirecionamento após login
+        if (response.ok) {
+            const data = await response.json();
+            // Login bem-sucedido
+            console.log('Login successful:', data.token);
+            // Salva o token no localStorage
+            localStorage.setItem('token', data.token);
+            // Redirecionamento de página 
+            window.location.href = './pages/cadastro/cadastro_cliente.html';
         } else {
-            document.getElementById("mensagem").textContent = "E-mail ou senha incorretos!";
+            // Login falhou
+            console.error('Login failed:', data.msg);
+            alert('O Login falhou: ' + data.msg);
         }
-    })
-    .catch(() => {
-        document.getElementById("mensagem").textContent = "Erro ao conectar com o servidor.";
-    });
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Ocorreu um erro: ' + error.message);
+    }
 });
-

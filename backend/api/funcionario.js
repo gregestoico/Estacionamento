@@ -65,8 +65,8 @@ class ApiFuncionario {
     async login(req, res){
         try{ 
             const { email, senha } = req.body;
+            
             const token = await serviceFuncionario.login(email, senha)
-
             res.status(200).send({ token }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })

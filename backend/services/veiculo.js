@@ -55,6 +55,10 @@ class ServiceVeiculo {
 
         return modelVeiculo.delete(placa);
     }
+
+    async findTipos() {
+        return modelVeiculo.findTipos()
+    }
 }
 
 module.exports = new ServiceVeiculo()
