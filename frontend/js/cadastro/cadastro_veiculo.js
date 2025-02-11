@@ -27,20 +27,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                     'Authorization': token
                 }
             });
+            
+            // Verifica se o token expirou
+            if(response.status === 401) {
+                alert('Seção expirada. Faça login para acessar esta página');
+                // Redireciona para a página de login (caminho relativo ao html)
+                window.location.href = '../../index.html';
+            }
+            
             console.log('Resposta da API:', response); // debug
             const data = await response.json();
-            
+
+            // Verifica se a resposta da API foi bem-sucedida
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             console.log('Dados recebidos:', data); // debug
             tiposVeiculos = data.tipos;
             
+            // Verifica se há tipos de veículos definidos
             if (tiposVeiculos.length === 0) {
-                console.log('Nenhum tipo encontrado'); // debug
+                console.log('Nenhum tipo de veículo foi definido na tabela.'); // debug
                 return;
             }
 
+            // Adiciona os tipos de veículos ao select
             tiposVeiculos.forEach(tipo => {
                 const option = document.createElement('option');
                 option.value = tipo;
@@ -107,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
-    // Execuçãoi das funções de inicialização
+    // Execução das funções de inicialização
     await loadVehiculeTypes();
-    initializeCPF(cpf_cli);
+    initializeCPF();
 });

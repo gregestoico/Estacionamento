@@ -4,15 +4,15 @@ const apiUrl = `http://localhost:${PORT}/api`; // URL da API
 
 document.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('client-form');
-    const planSelect = document.getElementById('plan');
+    const roleSelect = document.getElementById('role');
     console.log('Formulário:', form); // debug
-    // Carrega os planos
-    async function loadPlans() {
+    // Carrega os cargos
+    async function loadRoles() {
         try {
             console.log('Iniciando carregamento dos planos...'); // debug
             // Obtém o token do localStorage
             const token = localStorage.getItem('token');
-            const response = await fetch(apiUrl + '/plano', {
+            const response = await fetch(apiUrl + '/funcionario/cargos', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Redireciona para a página de login (caminho relativo ao html)
                 window.location.href = '../../index.html';
             }
-            
+
             console.log('Resposta da API:', response); // debug
             const data = await response.json();
             
@@ -35,23 +35,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             console.log('Dados recebidos:', data); // debug
-            planos = data.planos;
+            cargos = data.cargos;
             
-            // Verifica se há planos cadastrados
-            if (planos.length === 0) {
-                console.log('Nenhum plano encontrado'); // debug
+            // Verifica se há cargos definidos
+            if (cargos.length === 0) {
+                console.log('Nenhum cargo foi definido na tabela.'); // debug
                 return;
             }
 
-            // Adiciona os planos ao select
-            planos.forEach(plan => {
+            // Adiciona os cargos ao select
+            cargos.forEach(role => {
                 const option = document.createElement('option');
-                option.value = plan.cod_plano;
-                option.textContent = `${plan.turno} - R$ ${plan.preco_mensal}`;
-                planSelect.appendChild(option);
+                option.value = role;
+                option.textContent = role;
+                roleSelect.appendChild(option);
             });
         } catch (error) {
-            console.error('Erro ao carregar planos:', error);
+            console.error('Erro ao carregar cargos:', error);
         }
     }
     
@@ -63,14 +63,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             cpf: document.getElementById('cpf').value,
             nome: document.getElementById('name').value,
             email: document.getElementById('email').value,
-            telefone: document.getElementById('phone').value,
-            cod_plano: document.getElementById('plan').value
+            cargo: document.getElementById('role').value,
+            senha: document.getElementById('password').value
         };
+        console.log('Dados do formulário:', formData); // debug
         
         try {
             // Obtém o token do localStorage
             const token = localStorage.getItem('token');
-            const response = await fetch(apiUrl + '/mensalista', {
+            const response = await fetch(apiUrl + '/funcionario', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -81,11 +82,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             if (response.ok) {
                 alert('Cadastro realizado com sucesso!');
-                // Armazena o CPF do cliente no sessionStorage
-                sessionStorage.setItem('cpf_cli', formData.cpf);
+                
                 form.reset();
-                // Redireciona para a página de cadastro de veículos
-                window.location.href = './cadastro_veiculo.html';
+                // Redireciona para a página inicial
+                window.location.href = '../home.html';
             } else {
                 alert('Erro ao realizar cadastro');
             }
@@ -95,5 +95,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
-    await loadPlans();
+    await loadRoles();
 });

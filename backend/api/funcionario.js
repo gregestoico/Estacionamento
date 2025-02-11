@@ -4,7 +4,7 @@ class ApiFuncionario {
     async findByCpf(req, res){
         try {
             // O cpf pode vir de dois lugares diferentes:
-            // (1) dos pa   rams, se o gerente estiver buscando os dados de outro usuário (GET na rota /api/funcionario/:cpf)
+            // (1) dos params, se o gerente estiver buscando os dados de outro usuário (GET na rota /api/funcionario/:cpf)
             // (2) da session, se for o próprio usuário que estiver buscando seus dados (GET na rota /api/funcionario)
             const cpf = req.params.cpf || req.session.cpf
             const funcionario = await serviceFuncionario.findByCpf(cpf)
@@ -68,6 +68,16 @@ class ApiFuncionario {
             
             const token = await serviceFuncionario.login(email, senha)
             res.status(200).send({ token }) //Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+    }
+
+    findCargos(req, res){
+        try {
+            const cargos = serviceFuncionario.findCargos()
+
+            res.status(200).send({ cargos }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }

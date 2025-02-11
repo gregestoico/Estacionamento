@@ -3,6 +3,9 @@ const routerFuncionario = express.Router();
 const apiFuncionario = require("../api/funcionario");
 const authMiddleware = require('../middleware/auth');
 
+// Rotas auxiliares
+routerFuncionario.get('/cargos', authMiddleware(), apiFuncionario.findCargos)
+
 // Rotas do usuario por si só (funcionários com qualquer cargo podem acessar)
 routerFuncionario.get('/info', authMiddleware(), apiFuncionario.findByCpf)
 routerFuncionario.put('/', authMiddleware(), apiFuncionario.update)

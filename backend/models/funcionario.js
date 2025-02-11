@@ -1,4 +1,5 @@
 const db = require('../database/connection');
+const cargos = ['Gerente', 'Atendente'];
 
 /** Classe modelo de Mensalista */ 
 class ModelFuncionario{
@@ -43,6 +44,7 @@ class ModelFuncionario{
 
     /** Cria um funcionário */
     async create(cpf, nome, email, senha, cargo){
+        console.log('funcionario: ', cpf, nome, email, senha, cargo); // debug
         // Array dos valores a serem inseridos
         const args = [cpf, nome, email, senha, cargo];
         const sql = `
@@ -70,6 +72,11 @@ class ModelFuncionario{
         `;
         const [result] = await db.query(sql, args);
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas excluídas
+    }
+
+    /** Retorna os cargos cadastrados */
+    findCargos(){
+        return cargos; // Retorna todos os cargos
     }
 };
 

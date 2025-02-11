@@ -56,7 +56,7 @@ class ServiceVeiculo {
         return modelVeiculo.delete(placa);
     }
 
-    async findTipos() {
+    findTipos() {
         return modelVeiculo.findTipos()
     }
 }

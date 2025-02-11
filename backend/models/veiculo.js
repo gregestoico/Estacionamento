@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const db = require('../database/connection');
+const tipos = ['Carro', 'Moto', 'Caminhão'];
 
 /** Classe modelo de Veiculo */ 
 class ModelVeiculo{
@@ -55,13 +56,7 @@ class ModelVeiculo{
     }
 
     /** Retorna os tipos de veículos cadastrados */
-    async findTipos(){
-        // Lê o arquivo com a query SQL
-        const filePath = path.join(__dirname, '../database/queries/tiposVeiculos.txt');
-        const sql = fs.readFileSync(filePath, 'utf-8');
-        
-        const [row] = await db.query(sql);
-        const tipos = row.map(row => row.tipo_veic); // Extrai apenas os tipos de veículos
+    findTipos(){
         return tipos; // Retorna todos os tipos de veículos
     }
 };

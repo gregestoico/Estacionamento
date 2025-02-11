@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primepark - Home</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #0d6efd;
+        }
+        .navbar a {
+            color: white !important;
+        }
+        .vagas-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .vaga-card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .ocupada {
+            background-color: #d6d6d6;
+        }
+        .disponivel {
+            background-color: #ffffff;
+        }
+        .reservada {
+            background-color: #0d6efd;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../../favicon.ico" alt="Estacionamento" width="30" height="30" class="d-inline-block align-text-top">
+                Primepark
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Funcionários</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Planos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Veículos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Entradas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Preços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Faturamento</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="vagas-container container">
+        <div class="row">
+            <!-- Vagas numeradas -->
+            <!-- Exemplo de card de vaga com valores aleatórios -->
+            <!-- As vagas são numeradas a partir de 1 -->
+            <!-- Atribuindo Tipo e Situação aleatórios -->
+            
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 ocupada">
+                    <h5 class="card-title">Vaga 001</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Carro</p>
+                    <p class="card-text"><strong>Situação:</strong> Ocupada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 002</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 002</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 002</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 004</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Carro</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 reservada">
+                    <h5 class="card-title">Vaga 003</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Caminhão</p>
+                    <p class="card-text"><strong>Situação:</strong> Reservada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 reservada">
+                    <h5 class="card-title">Vaga 006</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Caminhão</p>
+                    <p class="card-text"><strong>Situação:</strong> Reservada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 ocupada">
+                    <h5 class="card-title">Vaga 005</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Ocupada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 007</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Carro</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 ocupada">
+                    <h5 class="card-title">Vaga 008</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Ocupada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 010</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Carro</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 reservada">
+                    <h5 class="card-title">Vaga 009</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Caminhão</p>
+                    <p class="card-text"><strong>Situação:</strong> Reservada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 ocupada">
+                    <h5 class="card-title">Vaga 008</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Ocupada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 ocupada">
+                    <h5 class="card-title">Vaga 008</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Ocupada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 ocupada">
+                    <h5 class="card-title">Vaga 001</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Carro</p>
+                    <p class="card-text"><strong>Situação:</strong> Ocupada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 002</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Moto</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 reservada">
+                    <h5 class="card-title">Vaga 003</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Caminhão</p>
+                    <p class="card-text"><strong>Situação:</strong> Reservada</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card vaga-card p-3 disponivel">
+                    <h5 class="card-title">Vaga 004</h5>
+                    <p class="card-text"><strong>Tipo de Veículo:</strong> Carro</p>
+                    <p class="card-text"><strong>Situação:</strong> Disponível</p>
+                </div>
+            </div>
+            <!-- Repita os cards abaixo para as outras vagas, com valores e cores aleatórias -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

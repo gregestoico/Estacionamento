@@ -18,6 +18,8 @@ class ServiceFuncionario {
     }
 
     async create(cpf, nome, email, cargo, senha) {
+        // passa o cargo para lowercase
+        cargo = cargo.toLowerCase()
         if(!cpf) {
             throw new Error("Favor informar o cpf")
         } else if(!nome) {
@@ -102,6 +104,10 @@ class ServiceFuncionario {
 
     async verify(cpf, cargo) {
         return modelFuncionario.findByCpfAndCargo(cpf, cargo)
+    }
+
+    findCargos() {
+        return modelFuncionario.findCargos()
     }
 }
 

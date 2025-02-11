@@ -21,16 +21,20 @@ function authMiddleware(cargo) {
         }
 
         jwt.verify(token, secretKey, async (err, decoded) => {
-            if(err) {
-                console.log(err)
-                res.status(400).json({ msg: 'Token inválido ou não fornecido' })
-                return
+            if (err) {
+                // Verifica se o token expirou
+                if (err.name === 'TokenExpiredError') {
+                    return res.status(401).json({ msg: 'Token expirado. Por favor, faça login novamente.' });
+                }
+                // Se não for um erro de token expirado, então é um erro de token inválido
+                console.log(err);
+                return res.status(400).json({ msg: 'Token inválido ou não fornecido' });
             }
 
             const verify = await funcionario.verify(decoded.cpf, decoded.cargo)
             // Verifica se o usuário tem permissão para acessar a rota
             if(!verify || (cargo && !cargo.includes(decoded.cargo))){
-                res.status(401).json({ msg: 'Permissão negada - Sem permissão' })
+                res.status(403).json({ msg: 'Permissão negada - Sem permissão' })
                 return
             }
             // Coloca o objeto decodificado (cpf, nome, cargo) na sessão
