@@ -60,6 +60,10 @@ class ServiceEntrada {
 
         return modelEntrada.delete(id_entrada);
     }
+
+    async findVagaOcupada(cod_vaga){
+        return await modelEntrada.findVagaOcupada(cod_vaga)
+    }
 }
 
 module.exports = new ServiceEntrada()

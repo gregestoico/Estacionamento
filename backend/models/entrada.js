@@ -51,6 +51,21 @@ class ModelEntrada{
         const [result] = await db.query(sql, args);
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas excluídas
     }
+
+    /** Pesquisa todos os atributos associações a uma vaga atualmente ocupada */
+    async findVagaOcupada(cod_vaga){
+        const args = [cod_vaga];
+        // Dada uma vaga, retorna as informações da entrada, vaga, veículo e mensalista
+        const sql = `
+            SELECT * FROM Entrada 
+            JOIN Vaga ON Entrada.cod_vaga = Vaga.cod_vaga
+            JOIN Veiculo ON Entrada.placa_veic = Veiculo.placa
+            JOIN Mensalista ON Veiculo.cpf_cli = Mensalista.cpf_cli
+            WHERE Vaga.cod_vaga = ? AND Entrada.hora_saida IS NULL
+        `;
+    const [result] = await db.query(sql, args);
+    return result[0] || result; // Retorna todos as tuplas encontradas
+    }
 };
 
 module.exports = new ModelEntrada()

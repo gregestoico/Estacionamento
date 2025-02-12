@@ -1,0 +1,27 @@
+/* Estilização para destaque */
+.highlight {
+    transition: transform 0.3s; /* Suaviza a animação */
+}
+
+/* Efeito hover */
+.highlight:hover {
+    transform: scale(1.05); /* Leve aumento no tamanho */
+    cursor: pointer; /* Muda o cursor para indicar interatividade */
+}
+/* Efeito de clique */
+.highlight:active {
+    transform: scale(0.9); /* Volta ao tamanho original */
+}
+
+/* Efeito de sombra */
+.boxShadow {
+    transition: box-shadow 0.3s; /* Suaviza a animação */
+}
+/* Efeito hover */
+.boxShadow:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+}
+/* Efeito de clique */
+.boxShadow:active{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Volta a sombra original */
+}

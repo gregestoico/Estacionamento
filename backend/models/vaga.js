@@ -6,9 +6,10 @@ class ModelVaga{
     async findByCod(cod_vaga){
         const args = [cod_vaga];
         const sql = `
-            SELECT * FROM Vaga WHERE cod_vaga = ?
+            SELECT * FROM Vaga WHERE Vaga.cod_vaga = ?
         `;
         const [result] = await db.query(sql, args);
+        console.log('Resultado:', result); // debug
         return result[0]; // Retorna o primeiro resultado
     }
 

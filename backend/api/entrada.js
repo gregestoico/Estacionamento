@@ -55,6 +55,17 @@ class ApiEntrada {
             res.status(500).send({ msg: error.message })
         }
     }
+
+    async findVagaOcupada(req, res) {
+        try {
+            const cod_vaga = req.params.cod
+            const entrada = await serviceEntrada.findVagaOcupada(cod_vaga)
+            
+            res.status(200).send({ entrada }) //Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+    }
 }
 
 module.exports = new ApiEntrada();

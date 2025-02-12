@@ -24,7 +24,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             // Salva o token no localStorage
             localStorage.setItem('token', data.token);
             // Redirecionamento de página 
-            window.location.href = './pages/cadastro/cadastro_cliente.html';
+            window.location.href = './pages/home/home.html';
         } else {
             // Login falhou
             console.error('Login failed:', data.msg);

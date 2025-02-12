@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function initializeCPF() {
         // Insere o CPF do cliente no campo do formulário
         const cpfElement = document.getElementById('cpf_cli');
-        cpfElement.value = cpf_cli || 'CPF não informado';
+        cpfElement.value = cpf_cli
     };
 
     /** Carrega os tipos de veículos */
