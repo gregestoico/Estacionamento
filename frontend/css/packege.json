@@ -1,0 +1,12 @@
+{
+    "name": "your-project-name",
+    "version": "1.0.0",
+    "description": "",
+    "main": "/js/app.js",
+    "type": "module",
+    "scripts": {
+      "start": "node frontend/js/app.js"
+    },
+    "dependencies": {
+    }
+  }
