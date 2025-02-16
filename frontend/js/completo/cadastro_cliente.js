@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (response.ok) {
                 alert('Cadastro realizado com sucesso!');
                 // Armazena o CPF do cliente no sessionStorage
-                sessionStorage.setItem('cpf_cli', formData.cpf);
+                // sessionStorage.setItem('cpf_cli', formData.cpf);
                 form.reset();
                 // Redireciona para a página de cadastro de veículos
                 window.location.href = './cadastro_veiculo.html';

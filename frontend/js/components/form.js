@@ -8,7 +8,7 @@ import fetchApi from "../api/fetch.js";
  * @param {HTMLElement[]} inputArray - Um array contendo os elementos <div class="mb-3"> com inputs.
  * @returns {HTMLDivElement} - O elemento <div> contendo todo o formulário.
  */
-export function criarForm(id, formTitle, inputArray) {
+export function criarForm(id, formTitle, inputArray, endpoint, redirect) {
   const div = document.createElement('div');
   div.className = 'container flex-grow-1 d-flex align-items-center justify-content-center';
 
@@ -38,13 +38,13 @@ export function criarForm(id, formTitle, inputArray) {
     console.log('Dados do formulário:', formData); // debug
     
     try {
-      const response = await fetchApi('/funcionario', 'POST', formData);
+      const response = await fetchApi(endpoint, 'POST', formData);
       if (response.ok) {
           alert('Cadastro realizado com sucesso!');
           
           form.reset();
           // Redireciona para a página inicial
-          window.location.href = './home.html';
+          window.location.href = redirect;
       } else {
           alert('Erro ao realizar cadastro');
       }
@@ -61,9 +61,13 @@ export function criarForm(id, formTitle, inputArray) {
  * 
  * @param {HTMLElement[]} inputArray - Um array contendo os elementos <div class="mb-3"> com inputs.
 */
-function criarFormData(inputDiv) {
-  const input = inputDiv.querySelector('input, select, textarea');
-  if (input && input.name) {
-    formData[input.name] = input.value;
-  }
+function criarFormData(inputArray) {
+  const formData = {};
+  inputArray.forEach(inputDiv => {
+    const input = inputDiv.querySelector('input, select, textarea');
+    if (input && input.name) {
+      formData[input.name] = input.value;
+    }
+  });
+  return formData;
 }

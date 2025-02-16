@@ -8,7 +8,7 @@ class CadastroClienteView{
     /** Atualiza a UI com os planos disponíveis. */
     atualizarUI(planos){
         const inputs = criarInputsCliente(planos);
-        const form = criarForm('client-form', 'Cadastro de Clientes', inputs);
+        const form = criarForm('client-form', 'Cadastro de Clientes', inputs, '/mensalista','./cadastro_veiculo');
         const footer = criarFooter();
         // Insere o formulário após o cabeçalho (nav)
         const nav = document.querySelector('nav');

@@ -8,7 +8,7 @@ class CadastroFuncionarioView{
     /** Atualiza a UI com os cargos disponíveis. */
     atualizarUI(cargos){
         const inputs = criarInputsFuncionario(cargos);
-        const form = criarForm('client-form', 'Cadastro de Funcionário', inputs);
+        const form = criarForm('client-form', 'Cadastro de Funcionário', inputs, '/funcionario', './home.html');
         const footer = criarFooter();
         // Insere o formulário após o cabeçalho (nav)
         const nav = document.querySelector('nav');
