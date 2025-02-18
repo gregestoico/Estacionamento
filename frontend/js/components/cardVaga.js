@@ -16,7 +16,7 @@ export function cardVaga(codigo, tipo, situacao) {
         'Reservada': 'background-color: hsl(0, 0.00%, 80.00%); color: dark;'     // Um cinza médio (HSL)
     };
     return `
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-3">
             <div id='vaga${codigo}' class="vaga-card highlight card mb-3" style="${cores[situacao]}"
                 data-bs-toggle="modal" 
                 data-bs-target="#vagaModal"

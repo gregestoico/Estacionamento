@@ -1,26 +1,12 @@
-export function criarImg() {
-    // Cria um formulário de login
+export function criarLogoImg(src, alt, classAttr) {
+    // Cria uma imagem que cobre 100% da altura e largura do container
     const div = document.createElement('div');
-    div.className = ''
+    div.className = `${classAttr} flex-column justify-content-center align-items-center bg-primary text-white p-5`
+    div.setAttribute('style', 'height: 100%;');
     div.innerHTML = `
-        <img src="favicon.ico" alt="Logo" id="logo">
-    `;
-
-    // Adiciona um evento de submit ao formulário
-    const form = div.querySelector('#loginForm');
-    div.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const email = form.email.value;
-        const senha = form.senha.value;
-        
-        try{
-            login(email, senha);
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Ocorreu um erro: ' + error.message);
-        }
-    });
+        <img src="${src}" alt="${alt}" class="img-fluid w-100" style="flex-grow: 1; object-fit: cover;">
+        <h1 class="text-center w-100" style="font-size: clamp(2rem, 5vw, 6rem); font-weight: bold;">PrimePark</h1>
+`;
 
     return div;
 }

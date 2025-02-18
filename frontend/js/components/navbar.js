@@ -2,6 +2,7 @@ import { logout } from "../auth/auth.js";
 
 export function criarNavbar() {
     const navbar = document.createElement('nav');
+    navbar.id = 'header';
     navbar.className = "navbar navbar-expand-lg navbar-dark bg-primary";
     navbar.innerHTML = `
         <div class="container-fluid col-10">
@@ -23,7 +24,6 @@ export function criarNavbar() {
                     <li class="nav-item"><a class="highlight nav-link" href="#">Faturamento</a></li>
                     <li id="sair" class="nav-item ms-3"><a class="highlight nav-link" href="#">Sair</a></li>
                 </ul>
-            </div>
         </div>
     `;
 
