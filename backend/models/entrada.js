@@ -66,6 +66,16 @@ class ModelEntrada{
     const [result] = await db.query(sql, args);
     return result[0] || result; // Retorna todos as tuplas encontradas
     }
+
+    /** Pesquisa todas as entradas que um funcionário já realizou */
+    async findEntradasFuncionario(cpf_func){
+        const args = [cpf_func];
+        const sql = `
+            SELECT * FROM Entrada WHERE cpf_func = ?
+        `;
+        const [result] = await db.query(sql, args);
+        return result; // Retorna todos as tuplas encontradas
+    }
 };
 
 module.exports = new ModelEntrada()

@@ -13,6 +13,18 @@ class modelFuncionario{
         }
         return cargos;
     }
+
+    async cadastrarFuncionario(funcionario) {
+        const response = await fetchApi('/funcionario', 'POST', funcionario);
+        const data = await response.json();
+        return data;
+    }
+
+    async buscarFuncionarios() {
+        const response = await fetchApi('/funcionario', 'GET');
+        const data = await response.json();
+        return data.funcionarios;
+    }
 }
 
 export default new modelFuncionario();

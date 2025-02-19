@@ -58,8 +58,8 @@ export function criarVagaModal() {
         } else if (entrada.cpf_cli) { // Verifica se um cliente mensalista ocupou a vaga
             // Preenche o modal com as adicionais do cliente
             document.getElementById('modal-body').innerHTML += `
-                <p class="bg-info bg-opacity-25"><strong>CPF do cliente:</strong> <span id="modalCpfCli">${entrada.cpf_cli}</span></p>
-                <p class="bg-info bg-opacity-25"><strong>Nome cliente:</strong> <span id="modalNome">${entrada.nome_cli}</span></p>
+                <p id="modalCpfCli" class="bg-info bg-opacity-25"><strong>CPF do cliente:</strong> <span>${entrada.cpf_cli}</span></p>
+                <p id="modalNome" class="bg-info bg-opacity-25"><strong>Nome cliente:</strong> <span id="modalNome">${entrada.nome_cli}</span></p>
             `;
         }
 

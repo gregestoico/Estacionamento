@@ -64,6 +64,10 @@ class ServiceEntrada {
     async findVagaOcupada(cod_vaga){
         return await modelEntrada.findVagaOcupada(cod_vaga)
     }
+
+    async findEntradasFuncionario(cpf_func){
+        return await modelEntrada.findEntradasFuncionario(cpf_func)
+    }
 }
 
 module.exports = new ServiceEntrada()

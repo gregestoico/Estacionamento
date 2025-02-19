@@ -4,7 +4,7 @@
     "description": "",
     "main": "/js/app.js",
     "type": "module",
-    "scripts": {
+  "scripts": {
       "start": "node frontend/js/app.js"
     },
     "dependencies": {

@@ -13,6 +13,7 @@ export function criarVagasContainer(vagas) {
     vagasContainer.className = 'container px-4 mx-auto';
     vagasContainer.setAttribute('id', 'vagas-container');
 
+    
     const row = document.createElement('div');
     row.className = 'row';
     // Mapeia as vagas para criar os elementos HTML correspondentes usando a função cardVaga

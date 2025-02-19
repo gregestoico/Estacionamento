@@ -5,6 +5,10 @@ const authMiddleware = require('../middleware/auth');
 
 // Rotas auxiliares
 routerEntrada.get('/vaga/:cod', authMiddleware(), apiEntrada.findVagaOcupada)
+routerEntrada.get('/funcionario/:cpf', authMiddleware(), apiEntrada.findEntradasFuncionario)
+// routerEntrada.get('/cliente/:cpf', authMiddleware(), apiEntrada.findEntradasCliente)
+// routerEntrada.get('/veiculo/:placa', authMiddleware(), apiEntrada.findEntradasVeiculo)
+
 
 // Rotas do usuario por si só (funcionários com qualquer cargo podem acessar)
 routerEntrada.get('/:id', authMiddleware(), apiEntrada.findById)

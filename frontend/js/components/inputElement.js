@@ -22,14 +22,15 @@
  * @param {string} id - O identificador do elemento input e do rótulo.
  * @param {string} type - O tipo do elemento input (por exemplo, 'text', 'email', 'password').
  * @param {string} label - O rótulo do elemento input.
+ * @param {string} [placeholder=''] - O texto de espaço reservado (placeholder) do elemento input.
  * @returns {HTMLDivElement} - Um elemento div contendo o rótulo e o input.
  */
-export function criarInputElement(id, type, label) {
+export function criarInputElement(id, type, label, placeholder=''){
     const div = document.createElement('div') ;
-    div.className = 'mb-3';
+    div.className = 'mb-3 form-floating';
     div.innerHTML = `
+        <input type="${type}" id="${id}" name="${id}" class="form-control" placeholder="${placeholder}" required>
         <label for="${id}" class="form-label">${label}</label>
-        <input type="${type}" id="${id}" name="${id}" class="form-control" required>
     `;
     return div;
 }

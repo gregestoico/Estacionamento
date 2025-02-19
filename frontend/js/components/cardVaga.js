@@ -6,8 +6,6 @@
  * @param {string} situacao - A situação da vaga (e.g., "Livre", "Ocupada", "Reservada").
  * @returns {string} - O HTML do card da vaga.
  */
- /** Função para criar um card com os dados da vaga */
-
 export function cardVaga(codigo, tipo, situacao) {
     // Mapeia uma cor para cada situação da vaga
     const cores = {

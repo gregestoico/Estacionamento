@@ -10,15 +10,15 @@ function criarloginForm() {
         <div class="login-container text-white d-flex flex-column align-items-center col-12 col-md-7 rounded shadow-sm" style="height: 100%;">
             <h1 id="mensagem" class="text-center mb-5">Bem Vindo Ao Primepark!</h1>
             <h2 class="text-center mb-4">Login</h2>
-            <form id="loginForm" class="col-12 col-md-8">
-                <div class="mb-3">
+            <form id="loginForm" class="col-12 col-md-8 text-primary">
+                <div class="form-floating mb-3">
+                    <input type="email" id="email" class="form-control" placeholder="" required>
                     <label for="email" class="form-label">E-mail:</label>
-                    <input type="email" id="email" class="form-control" required>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 form-floating">
+                    <input type="password" id="senha" class="form-control" placeholder="" required>
                     <label for="senha" class="form-label">Senha:</label>
-                    <input type="password" id="senha" class="form-control" required>
                 </div>
 
                 <div class="text-center">

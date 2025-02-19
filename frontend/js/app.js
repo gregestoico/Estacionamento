@@ -1,6 +1,7 @@
 import {criarNavbar} from './components/navbar.js';
 import loginController from './controllers/login.js';
 import homeController from './controllers/home.js';
+import detalhesFuncionarioController from './controllers/detalhes_funcionario.js';
 import cadastroFuncionarioController from './controllers/cadastro_funcionario.js';
 import cadastroClienteController from './controllers/cadastro_cliente.js';
 import cadastroVeiculoController from './controllers/cadastro_veiculo.js';
@@ -12,8 +13,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         login: loginController,
         home: homeController,
         funcionario: cadastroFuncionarioController,
-        cliente: cadastroClienteController,
+        cadastro_cliente: cadastroClienteController,
         veiculo: cadastroVeiculoController,
+        detalhes_funcionario: detalhesFuncionarioController,
     };
     
     const paginaAtual = document.body.id;

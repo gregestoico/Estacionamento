@@ -2,11 +2,14 @@ import { criarForm } from '../components/form.js';
 import { criarInputElement } from '../components/inputElement.js';
 import { criarSelectElement } from '../components/select.js';
 import { criarFooter } from '../components/footer.js';
+import { desabilitarNavbarLink } from './home.js';
 
 /** Classe para a view da página de cadastro de funcionarios. */
 class CadastroFuncionarioView{
     /** Atualiza a UI com os cargos disponíveis. */
     atualizarUI(cargos){
+        desabilitarNavbarLink('cadastrar-funcionario');
+        
         const inputs = criarInputsFuncionario(cargos);
         const form = criarForm('client-form', 'Cadastro de Funcionário', inputs, '/funcionario', './home.html');
         const footer = criarFooter();

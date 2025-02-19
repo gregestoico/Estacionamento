@@ -66,6 +66,17 @@ class ApiEntrada {
             res.status(500).send({ msg: error.message })
         }
     }
+
+    async findEntradasFuncionario(req, res) {
+        try {
+            const cpf_func = req.params.cpf
+            const entradas = await serviceEntrada.findEntradasFuncionario(cpf_func)
+            
+            res.status(200).send({ entradas }) //Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+    }
 }
 
 module.exports = new ApiEntrada();

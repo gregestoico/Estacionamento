@@ -37,8 +37,53 @@ export function criarSidebar(){
                     <option value="Reservada">Reservada</option>
                 </select>
             </div>
-            <button class="btn btn-primary w-100" id="btnFiltrar">Aplicar Filtros</button>
+            <button class="btn highlight btn-primary mt-3 w-100" id="btnFiltrar">Aplicar Filtros</button>
         </div>
     `;
+
+    // Adiciona um evento de clique ao botão de filtrar
+    sidebar.querySelector('#btnFiltrar').addEventListener('click', function () {
+        const filtroCpf = document.getElementById('filtroCpf').value.toLowerCase();
+        const filtroNome = document.getElementById('filtroNome').value.toLowerCase();
+        const filtroTipo = document.getElementById('filtroTipo').value;
+        const filtroSituacao = document.getElementById('filtroSituacao').value;
+        
+        document.querySelectorAll('.vaga-card').forEach(card => {
+            const tipo = card.getAttribute('data-tipo');
+            const situacao = card.getAttribute('data-situacao');
+
+            // TODO: Implementar a lógica de filtragem no backend
+
+            let show = true;
+
+            if (filtroTipo && filtroTipo !== tipo) {
+                show = false;
+            }
+
+            if (filtroSituacao && filtroSituacao !== situacao) {
+                show = false;
+            }
+
+            if (show) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+
+            const nome = card.getAttribute('data-nome').toLowerCase();
+            const cpf = card.getAttribute('data-cpf').toLowerCase();
+
+            if (filtroNome && !nome.includes(filtroNome)) {
+                show = false;
+            }
+
+            if (filtroCpf && !cpf.includes(filtroCpf)) {
+                show = false;
+            }
+
+        });
+    });
+
+
     return sidebar;
 }

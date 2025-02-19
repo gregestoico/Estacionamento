@@ -179,6 +179,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Redireciona o usuário para a página de cadastro de cliente
         window.location.href = '../cadastro/cadastro_cliente.html';
+        
     });
 
 
