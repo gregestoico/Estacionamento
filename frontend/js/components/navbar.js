@@ -8,7 +8,7 @@ export function criarNavbar() {
     // TODO: Modularizar o código dos nav-item dropdown se der tempo
     navbar.innerHTML = `
         <div class="container-fluid col-10">
-            <a class="navbar-brand fw-bold" href="#">
+            <a class="navbar-brand fw-bold" href="./home.html">
                 <img src="../favicon.ico" alt="Estacionamento" width="30" height="30" class="d-inline-block align-text-top">
                 Primepark
             </a>
@@ -31,8 +31,8 @@ export function criarNavbar() {
                             Clientes
                         </a>
                         <ul class="dropdown-menu bg-primary" aria-labelledby="clientesDropdown">
-                            <li><a  class="dropdown-item" href="#">Contratos</a></li>
-                            <li><a class="dropdown-item" href="#">Novo Cliente</a></li>
+                            <li><a id="detalhes-cliente" class="dropdown-item" href="./detalhes_cliente.html">Contratos</a></li>
+                            <li><a id="cadastrar-cliente" class="dropdown-item" href="./cadastro_cliente.html">Novo Cliente</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="highlight nav-link" href="#">Planos</a></li>
@@ -68,13 +68,15 @@ export function criarNavbar() {
         }
     })
 
+    // TODO: Substituir essas funções pelo href do proprio link do navbar
+    
     // Adiciona um evento ao botão da logo
-    const logo = navbar.querySelector('.navbar-brand');
-    adicionarListener(logo, './home.html');
+    // const logo = navbar.querySelector('.navbar-brand');
+    // adicionarListener(logo, './home.html');
 
     // Adiciona um evento ao botão de cadastro de cliente
-    const linkClientes = navbar.querySelector('#clientes-link');
-    adicionarListener(linkClientes, './cadastro_cliente.html');
+    // const linkClientes = navbar.querySelector('#clientes-link');
+    // adicionarListener(linkClientes, './cadastro_cliente.html');
 
     // Adiciona um evento ao botão de cadastro de cliente
     const linkDetalhesFuncionario = navbar.querySelector('#detalhes-funcionario');

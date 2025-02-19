@@ -46,6 +46,18 @@ body {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Custom button verde */
+.custom-btn.green {
+    background: linear-gradient(135deg, #00a239, #007b33);
+    transition: all 0.3s ease-in-out;
+}
+.custom-btn.green:hover {
+    background: linear-gradient(135deg, #00a239, #0056b3);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+
 .dropdown-menu .dropdown-item {
     color: #ffffff !important;
 }

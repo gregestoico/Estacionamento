@@ -1,7 +1,7 @@
 import modelFuncionario from '../models/funcionario.js';
 import detalhesFuncionarioView from '../views/detalhes_funcionario.js';
 
-class DetalhersFuncionarioController{
+class DetalhesFuncionarioController{
     async init() {
         try {
             // Carrega os cargos da API e atualiza a UI
@@ -15,4 +15,4 @@ class DetalhersFuncionarioController{
     }
 }
 
-export default new DetalhersFuncionarioController();
+export default new DetalhesFuncionarioController();
