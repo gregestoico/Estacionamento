@@ -10,7 +10,7 @@ export function criarVagasContainer(vagas) {
     
     // Cria o elemento div que será o container das vagas
     const vagasContainer = document.createElement('div');
-    vagasContainer.className = 'container col-md-9 px-4 ';
+    vagasContainer.className = 'container px-4 mx-auto';
     vagasContainer.setAttribute('id', 'vagas-container');
 
     const row = document.createElement('div');

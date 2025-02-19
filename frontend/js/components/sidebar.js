@@ -3,12 +3,10 @@ export function criarSidebar(){
     const headerHeight = document.querySelector('#header').offsetHeight;
     
     const sidebar = document.createElement('div');
-    sidebar.className = 'bg-light border-end h-100';
+    sidebar.className = 'bg-light border-end h-100 col-3';
     sidebar.id = 'sidebar-wrapper';
     sidebar.style.position = 'sticky';  // Torna o sidebar "pegajoso"
     sidebar.style.top = `${headerHeight}px`;         // Desloca o sidebar para começar 60px abaixo do topo (ajuste conforme a altura do cabeçalho)
-    sidebar.style.width = '250px';
-    sidebar.style.minHeight = '100vh';
 
     sidebar.innerHTML = `
         <div class="sidebar-heading bg-primary text-white text-center py-3">Filtros de Pesquisa</div>

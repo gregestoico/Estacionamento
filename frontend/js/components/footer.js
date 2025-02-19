@@ -3,7 +3,7 @@
 export function criarFooter() {
     // Cria o elemento footer
     const footer = document.createElement('footer');
-    footer.className = 'footer bg-primary text-white text-center py-3 mt-auto';
+    footer.className = 'footer bg-primary text-white text-center py-3 fixed-bottom';
     footer.innerHTML = `
     <div class="container">
         <p class="mb-0">© 2025 Primepark. Todos os direitos reservados.</p>

@@ -15,9 +15,33 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-    max-height: 80vh;
-    overflow-y: auto;
+    height: auto;
+    overflow: auto;
 }
 .vaga-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom button */
+.custom-btn {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #004092);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }

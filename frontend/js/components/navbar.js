@@ -3,10 +3,11 @@ import { logout } from "../auth/auth.js";
 export function criarNavbar() {
     const navbar = document.createElement('nav');
     navbar.id = 'header';
-    navbar.className = "navbar navbar-expand-lg navbar-dark bg-primary";
+    navbar.className = "navbar navbar-expand-lg navbar-dark bg-primary position-fixed w-100 top-0";
+    navbar.style.zIndex = 1;
     navbar.innerHTML = `
         <div class="container-fluid col-10">
-            <a class=" navbar-brand" href="#">
+            <a class=" navbar-brand fw-bold" href="#">
                 <img src="../favicon.ico" alt="Estacionamento" width="30" height="30" class="d-inline-block align-text-top">
                 Primepark
             </a>

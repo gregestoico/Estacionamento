@@ -4,6 +4,7 @@ import homeController from './controllers/home.js';
 import cadastroFuncionarioController from './controllers/cadastro_funcionario.js';
 import cadastroClienteController from './controllers/cadastro_cliente.js';
 import cadastroVeiculoController from './controllers/cadastro_veiculo.js';
+import { criarFooter } from './components/footer.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     const paginaAtual = document.body.id;
     if (paginaAtual !== 'login') {
-        inserirNavbar();
+        inserirNavbarFooter();
     }
     console.log('paginaAtual: ', paginaAtual);
     if (controllers[paginaAtual]) {
@@ -26,8 +27,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     
 });
 
-function inserirNavbar() {
+function inserirNavbarFooter() {
     const elementNavbar = criarNavbar();
+    const footer = criarFooter();
     const body = document.querySelector('body');
     body.insertBefore(elementNavbar, body.firstChild);
+    body.appendChild(footer);
+    const navbarHeight = elementNavbar.offsetHeight;
+    const footerHeight = elementNavbar.offsetHeight;
+    body.style.paddingTop = `${navbarHeight}px`;
+    body.style.paddingBottom = `calc(${footerHeight}px + 3rem)`;
+    body.appendChild(footer);
 }
