@@ -37,7 +37,7 @@ export function criarSidebar(){
                     <option value="Reservada">Reservada</option>
                 </select>
             </div>
-            <button class="btn highlight btn-primary mt-3 w-100 mb-4" id="btnFiltrar">Aplicar Filtros</button>
+            <button class="btn highlight btn-primary mt-3 w-100" id="btnFiltrar">Aplicar Filtros</button>
         </div>
     `;
 
@@ -70,17 +70,16 @@ export function criarSidebar(){
                 card.style.display = 'none';
             }
 
-            const nome = card.getAttribute('data-nome').toLowerCase();
-            const cpf = card.getAttribute('data-cpf').toLowerCase();
+            // const nome = card.getAttribute('data-nome').toLowerCase();
+            // const cpf = card.getAttribute('data-cpf').toLowerCase();
 
-            if (filtroNome && !nome.includes(filtroNome)) {
-                show = false;
-            }
+            // if (filtroNome && !nome.includes(filtroNome)) {
+            //     show = false;
+            // }
 
-            if (filtroCpf && !cpf.includes(filtroCpf)) {
-                show = false;
-            }
-
+            // if (filtroCpf && !cpf.includes(filtroCpf)) {
+            //     show = false;
+            // }
         });
     });
 
