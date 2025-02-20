@@ -8,6 +8,8 @@ import cadastroFuncionarioController from './controllers/cadastro_funcionario.js
 import cadastroClienteController from './controllers/cadastro_cliente.js';
 import cadastroVeiculoController from './controllers/cadastro_veiculo.js';
 import planosController from './controllers/planos.js';
+import faturasController from './controllers/faturas.js';
+import precosController from './controllers/precos.js';
 import { criarFooter } from './components/footer.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -22,6 +24,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         detalhes_cliente: detalhesClienteController,
         detalhes_entrada: detalhesEntradaController,
         planos: planosController,
+        precos: precosController,
+        faturas: faturasController,
     };
     
     const paginaAtual = document.body.id;

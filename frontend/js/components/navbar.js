@@ -38,8 +38,8 @@ export function criarNavbar() {
                     <li id="planos-link" class="nav-item"><a class="highlight nav-link" href="./planos.html">Planos</a></li>
                     <li id="veiculos-link" class="nav-item"><a class="highlight nav-link" href="#">Veículos</a></li>
                     <li id="entradas-link" class="nav-item"><a class="highlight nav-link" href="./detalhes_entrada.html">Entradas</a></li>
-                    <li class="nav-item"><a class="highlight nav-link" href="#">Preços</a></li>
-                    <li class="nav-item"><a class="highlight nav-link" href="#">Faturamento</a></li>
+                    <li id="precos-link" class="nav-item"><a class="highlight nav-link" href="./precos.html">Preços</a></li>
+                    <li id="faturas-link" class="nav-item"><a class="highlight nav-link" href="./faturas.html">Faturas</a></li>
                     <li id="sair" class="nav-item ms-3"><a class="highlight nav-link" href="#">Sair</a></li>
                 </ul>
             </div>

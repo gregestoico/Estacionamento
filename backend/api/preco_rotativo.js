@@ -14,9 +14,9 @@ class ApiPrecoRotativo {
 
     async findAll(req, res) {
         try {
-            const valores_hora =  await servicePrecoRotativo.findAll()
+            const precos =  await servicePrecoRotativo.findAll()
 
-            res.status(200).send({ valores_hora }) //Envia a resposta
+            res.status(200).send({ precos }) //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message }) 
         }

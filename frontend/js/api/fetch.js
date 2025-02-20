@@ -15,9 +15,9 @@ async function fetchApi(endpoint, method, body) {
         // Obtém o token do localStorage
         const token = localStorage.getItem('token');
         const response = await fetch(`${apiUrl}${endpoint}`, {
-            method: method,
-            headers: { 
-                'Content-Type': 'application/json',
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
                 'Authorization': token
             },
             body: JSON.stringify(body)
@@ -43,8 +43,6 @@ async function fetchApi(endpoint, method, body) {
     } catch (error) {
             console.error('Erro:', error);
         }
-
-        return response;
 }
 
 export default fetchApi;
