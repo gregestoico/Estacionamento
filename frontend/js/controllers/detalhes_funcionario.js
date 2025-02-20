@@ -1,5 +1,5 @@
 import modelFuncionario from '../models/funcionario.js';
-import detalhesFuncionarioView from '../views/detalhes_funcionario.js';
+import detalhesFuncionarioView from '../views/planos.js';
 
 class DetalhesFuncionarioController{
     async init() {

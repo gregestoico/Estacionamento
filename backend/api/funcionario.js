@@ -29,7 +29,7 @@ class ApiFuncionario {
         try {
             const { cpf, nome, email, cargo, senha } = req.body
             const result = await serviceFuncionario.create(cpf, nome, email, cargo, senha)
-
+            
             res.status(200).send({ result })   //Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message })

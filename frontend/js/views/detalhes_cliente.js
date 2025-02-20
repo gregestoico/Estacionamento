@@ -7,7 +7,7 @@ class DetalhesClienteView{
     /** Atualiza a UI com os os clientes cadastrados. */
     atualizarUI(clientes){
         desabilitarNavbarLink('detalhes-cliente');
-
+        
         if (clientes.length > 0) {
             document.body.appendChild(criarListClienteContainer(clientes));
             document.body.appendChild(criarClienteModal());

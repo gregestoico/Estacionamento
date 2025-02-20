@@ -26,7 +26,7 @@ export function criarNavbar() {
                             <li><a id="detalhes-funcionario" class="dropdown-item" href="#">Detalhes</a></li>
                         </ul>
                     </li>
-                    <li id="clientes-link" class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="highlight nav-link dropdown-toggle" href="#" id="clientesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Clientes
                         </a>
@@ -35,7 +35,7 @@ export function criarNavbar() {
                             <li><a id="cadastrar-cliente" class="dropdown-item" href="./cadastro_cliente.html">Novo Cliente</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="highlight nav-link" href="#">Planos</a></li>
+                    <li id="planos-link" class="nav-item"><a class="highlight nav-link" href="./planos.html">Planos</a></li>
                     <li id="veiculos-link" class="nav-item"><a class="highlight nav-link" href="#">Veículos</a></li>
                     <li class="nav-item"><a class="highlight nav-link" href="#">Entradas</a></li>
                     <li class="nav-item"><a class="highlight nav-link" href="#">Preços</a></li>

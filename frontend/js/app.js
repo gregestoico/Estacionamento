@@ -6,6 +6,7 @@ import detalhesClienteController from './controllers/detalhes_cliente.js';
 import cadastroFuncionarioController from './controllers/cadastro_funcionario.js';
 import cadastroClienteController from './controllers/cadastro_cliente.js';
 import cadastroVeiculoController from './controllers/cadastro_veiculo.js';
+import planosController from './controllers/planos.js';
 import { criarFooter } from './components/footer.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         veiculo: cadastroVeiculoController,
         detalhes_funcionario: detalhesFuncionarioController,
         detalhes_cliente: detalhesClienteController,
+        planos: planosController,
     };
     
     const paginaAtual = document.body.id;

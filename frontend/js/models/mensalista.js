@@ -4,14 +4,14 @@ class modelMensalista{
     async buscarMensalistas() {
         const response = await fetchApi('/mensalista', 'GET');
         const data = await response.json();
-        const clientes =  data.clientes;
+        const mensalistas =  data.mensalistas;
 
         // Verifica se a lista de clientes não está vazia
-        if (clientes.length === 0) {
+        if (mensalistas.length === 0) {
             console.log('Nenhum cliente foi obtido.'); // debug
             return;
         }
-        return clientes;
+        return mensalistas;
     }
 
     async cadastrarMensalista(mensalista) {
