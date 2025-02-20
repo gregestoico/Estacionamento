@@ -9,7 +9,7 @@
  */
 export function criarSelectElement(id, label, optionsDict) {
     const div = document.createElement('div');
-    div.className = 'mb-3';
+    div.className = 'mb-3 input-container';
     
     const select = document.createElement('select');
     select.id = id;

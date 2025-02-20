@@ -7,12 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Recupera o CPF do cliente do sessionStorage
     const cpf_cli = sessionStorage.getItem('cpf_cli');
 
-    /** Inicializa o campo de CPF do cliente associado no formulário */
-    function initializeCPF() {
-        // Insere o CPF do cliente no campo do formulário
-        const cpfElement = document.getElementById('cpf_cli');
-        cpfElement.value = cpf_cli
-    };
+    // Insere o CPF do cliente no campo do formulário
+    const cpfElement = document.getElementById('cpf_cli');
+    cpfElement.value = cpf_cli;
 
     /** Carrega os tipos de veículos */
     async function loadVehiculeTypes() {

@@ -33,8 +33,10 @@ export function criarForm(id, formTitle, inputArray, endpoint, redirect) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    const divArray = form.querySelectorAll('.input-container');
+
     // Cria um dicionário id -> valor com os dados do formulário
-    const formData = criarFormData(inputArray);
+    const formData = criarFormData(divArray);
     console.log('Dados do formulário:', formData); // debug
     
     try {

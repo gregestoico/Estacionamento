@@ -23,8 +23,8 @@ class ApiMensalista {
     }
 
     async create(req, res) {
+        const { cpf, nome, email, telefone, cod_plano } = req.body
         try {
-            const { cpf, nome, email, telefone, cod_plano } = req.body
             const result = await serviceMensalista.create(cpf, nome, email, telefone, cod_plano)
 
             res.status(200).send({ result }) //Envia a resposta

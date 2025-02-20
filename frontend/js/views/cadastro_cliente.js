@@ -26,11 +26,12 @@ function criarInputsCliente(planos){
 );
         
     // O id dos inputs deve ser igual ao campo do body lido na requisição
-    const planoSelect = criarSelectElement("plano", "Plano", planosDict);
+    const planoSelect = criarSelectElement("cod_plano", "Plano", planosDict);
     const cpfInput = criarInputElement("cpf", "text", "CPF");
     const nomeInput = criarInputElement("nome", "text", "Nome");
     const emailInput = criarInputElement("email", "email", "Email");
     const telefoneInput = criarInputElement("telefone", "tel", "Telefone");
+
 
     return [cpfInput, nomeInput, emailInput, telefoneInput, planoSelect];
 }

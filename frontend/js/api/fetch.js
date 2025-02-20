@@ -44,7 +44,7 @@ async function fetchApi(endpoint, method, body) {
             console.error('Erro:', error);
         }
 
-        return response;
+
 }
 
 export default fetchApi;
