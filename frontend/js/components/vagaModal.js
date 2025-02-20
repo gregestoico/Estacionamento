@@ -122,7 +122,6 @@ export function criarVagaModal() {
         modal.querySelector('#modalCodigo').textContent = card.getAttribute('data-codigo');
         modal.querySelector('#modalTipo').textContent = card.getAttribute('data-tipo');
         modal.querySelector('#modalSituacao').textContent = card.getAttribute('data-situacao');
-
     });
 
     // Adiciona um evento ao modal de vaga para limpar os campos dinamicamente ao fechar 

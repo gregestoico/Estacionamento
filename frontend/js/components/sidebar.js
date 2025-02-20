@@ -37,7 +37,7 @@ export function criarSidebar(){
                     <option value="Reservada">Reservada</option>
                 </select>
             </div>
-            <button class="btn highlight btn-primary mt-3 w-100" id="btnFiltrar">Aplicar Filtros</button>
+            <button class="btn highlight btn-primary mt-3 w-100 mb-4" id="btnFiltrar">Aplicar Filtros</button>
         </div>
     `;
 

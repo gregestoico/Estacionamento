@@ -1,6 +1,6 @@
 // import { criarFaturaModal } from '../components/faturaModal.js';
 // import { criarFaturasContainer } from '../components/faturasContainer.js';
-import { criarFaturaView } from './faturaView.js';
+import { criarFaturaContainer } from '../components/faturaContainer.js';
 import { desabilitarNavbarLink } from './home.js';
 
 /** Classe para a view da página de consulta de faturas. */
@@ -10,7 +10,7 @@ class FaturasView{
         desabilitarNavbarLink('faturas-link');
 
         if (faturas.length > 0) {
-             criarFaturaView(faturas);
+            criarFaturaContainer(faturas);
             // document.body.appendChild(faturaview);
             // document.body.appendChild(criarFaturasContainer(faturas));
             // document.body.appendChild(criarFaturaModal());

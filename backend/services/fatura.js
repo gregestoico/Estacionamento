@@ -5,6 +5,10 @@ class ServiceFatura {
         return await modelFatura.findByCod(cod_fatura)
     }
 
+    async findByCpf(cpf_cli){
+        return await modelFatura.findByCpf(cpf_cli)
+    }
+
     async findAll(){
         return await modelFatura.findAll()
     }
@@ -61,15 +65,9 @@ class ServiceFatura {
         return modelFatura.updateHoraAtual(cod_fatura)
     }
 
-    async faturamento(cpf_cli, startDate) {
-        return await modelFatura.faturamento(cpf_cli, startDate);
-    }
-
-    async faturamentoMensalistas(valorMinimo) {
-        if (!valorMinimo) {
-            valorMinimo = 0;
-        }
-        return await modelFatura.faturamentoMensalistas(valorMinimo);
+    async faturamento(cpf_cli) {
+        return await modelFatura.faturamento(cpf_cli);
+        
     }
 
     async faturasDeFaturamentoMin(valorMinimo) {

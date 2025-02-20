@@ -2,11 +2,14 @@ import { criarForm } from '../components/form.js';
 import { criarInputElement } from '../components/inputElement.js';
 import { criarSelectElement } from '../components/select.js';
 import { criarFooter } from '../components/footer.js';
+import { desabilitarNavbarLink } from './home.js';
 
 /** Classe para a view da página de cadastro de clientes mensalistas. */
 class CadastroClienteView{
     /** Atualiza a UI com os planos disponíveis. */
     atualizarUI(planos){
+        desabilitarNavbarLink('cadastrar-cliente');
+        
         const inputs = criarInputsCliente(planos);
         const form = criarForm('client-form', 'Cadastro de Clientes', inputs, '/mensalista','./cadastro_veiculo.html');
         const footer = criarFooter();

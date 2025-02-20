@@ -2,11 +2,14 @@ import { criarForm } from '../components/form.js';
 import { criarInputElement } from '../components/inputElement.js';
 import { criarSelectElement } from '../components/select.js';
 import { criarFooter } from '../components/footer.js';
+import { desabilitarNavbarLink } from './home.js';
 
 /** Classe para a view da página de cadastro de funcionarios. */
 class CadastroVeiculoView{
     /** Atualiza a UI com os tipos de veículos possíveis. */
     atualizarUI(tiposVeiculos){
+        desabilitarNavbarLink('veiculos-link');
+        
         const inputs = criarInputsVeiculo(tiposVeiculos);
         const form = criarForm('veiculo-form', 'Cadastro de Veículo', inputs, '/veiculo', './home.html');
         const footer = criarFooter();

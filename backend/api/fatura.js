@@ -70,31 +70,21 @@ class ApiFatura {
 
     async faturamento(req, res) {
         try {
-            const { cpf_cli, startDate } = req.body;
-            const faturamento = await serviceFatura.faturamento(cpf_cli, startDate);
-
-            res.status(200).send( faturamento ); // Envia a resposta
+            const { cpf_cli } = req.query;
+            const faturamento = await serviceFatura.faturamento(cpf_cli);
+            const faturas = await serviceFatura.findByCpf(cpf_cli);
+            res.status(200).send( { faturamento, faturas }); // Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message });
         }
     }
 
-    async faturamentoMensalistas(req, res) {
-        try {
-            const { valorMinimo } = req.body;
-            const faturamentos = await serviceFatura.faturamentoMensalistas(valorMinimo);
-
-            res.status(200).send({ faturamentos }); // Envia a resposta
-        } catch (error) {
-            res.status(500).send({ msg: error.message });
-        }
-    }
-
+    /** Listar as faturas e o veículo de clientes que já pagaram mais de um certo valor em faturas. */
     async faturasDeFaturamentoMin(req, res) {
         try {
-            const { valorMinimo } = req.body;
+            const { valorMinimo } = req.query;
             const faturas = await serviceFatura.faturasDeFaturamentoMin(valorMinimo);
-
+            
             res.status(200).send({ faturas }); // Envia a resposta
         } catch (error) {
             res.status(500).send({ msg: error.message });

@@ -7,7 +7,7 @@ const authMiddleware = require('../middleware/auth');
 routerFatura.put('/pagar/:cod', authMiddleware(), apiFatura.pagarFatura)
 // Novas rotas para faturamento
 routerFatura.get('/faturamento', authMiddleware(), apiFatura.faturamento);
-routerFatura.get('/faturamento/mensalistas', authMiddleware(), apiFatura.faturamentoMensalistas);
+// routerFatura.get('/faturamento/mensalistas', authMiddleware(), apiFatura.faturamentoMensalistas);
 routerFatura.get('/faturamentoMin', authMiddleware(), apiFatura.faturasDeFaturamentoMin);
 
 // Rotas do usuario por si só (funcionários com qualquer cargo podem acessar)
