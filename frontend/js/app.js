@@ -3,6 +3,7 @@ import loginController from './controllers/login.js';
 import homeController from './controllers/home.js';
 import detalhesFuncionarioController from './controllers/detalhes_funcionario.js';
 import detalhesClienteController from './controllers/detalhes_cliente.js';
+import detalhesEntradaController from './controllers/detalhes_entrada.js';
 import cadastroFuncionarioController from './controllers/cadastro_funcionario.js';
 import cadastroClienteController from './controllers/cadastro_cliente.js';
 import cadastroVeiculoController from './controllers/cadastro_veiculo.js';
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         veiculo: cadastroVeiculoController,
         detalhes_funcionario: detalhesFuncionarioController,
         detalhes_cliente: detalhesClienteController,
+        detalhes_entrada: detalhesEntradaController,
         planos: planosController,
     };
     

@@ -1,5 +1,5 @@
 import { criarClienteModal } from '../components/clienteModal.js';
-import { criarListClienteContainer } from '../components/listClienteContainer.js';
+import { criarClienteContainer } from '../components/clienteContainer.js';
 import { desabilitarNavbarLink } from './home.js';
 
 /** Classe para a view da página de cadastro de clientes. */
@@ -9,7 +9,7 @@ class DetalhesClienteView{
         desabilitarNavbarLink('detalhes-cliente');
         
         if (clientes.length > 0) {
-            document.body.appendChild(criarListClienteContainer(clientes));
+            document.body.appendChild(criarClienteContainer(clientes));
             document.body.appendChild(criarClienteModal());
         }
     }

@@ -1,6 +1,6 @@
 import { cardCliente } from "./cardCliente.js";
 
-export function criarListClienteContainer(clientes){
+export function criarClienteContainer(clientes){
     const listContainer = document.createElement('div');
     listContainer.classList.add('container', 'mt-5', 'pt-4');
     listContainer.id = 'clientes-container';

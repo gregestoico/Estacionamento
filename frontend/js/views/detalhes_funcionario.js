@@ -1,5 +1,5 @@
 import { criarFuncionarioModal } from '../components/funcionarioModal.js';
-import { criarListFuncionarioContainer } from '../components/listFuncContainer.js';
+import { criarFuncionarioContainer } from '../components/funcContainer.js';
 import { desabilitarNavbarLink } from './home.js';
 
 /** Classe para a view da página de cadastro de funcionarios. */
@@ -9,7 +9,7 @@ class DetalhesFuncionarioView{
         desabilitarNavbarLink('detalhes-funcionario');
 
         if (funcionarios.length > 0) {
-            document.body.appendChild(criarListFuncionarioContainer(funcionarios));
+            document.body.appendChild(criarFuncionarioContainer(funcionarios));
             document.body.appendChild(criarFuncionarioModal());
         }
     }

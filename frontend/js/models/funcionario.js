@@ -1,6 +1,6 @@
 import fetchApi from '../api/fetch.js';
 
-class modelFuncionario{
+class ModelFuncionario{
     async buscarCargos() {
         const response = await fetchApi('/funcionario/cargos','GET');
         const data = await response.json();
@@ -27,4 +27,4 @@ class modelFuncionario{
     }
 }
 
-export default new modelFuncionario();
+export default new ModelFuncionario();

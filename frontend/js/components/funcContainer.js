@@ -1,6 +1,6 @@
 import { cardFuncionario } from "./cardFuncionario.js";
 
-export function criarListFuncionarioContainer(funcionarios){
+export function criarFuncionarioContainer(funcionarios){
     const listContainer = document.createElement('div');
     listContainer.classList.add('container', 'mt-5', 'pt-4');
     listContainer.id = 'funcionarios-container';

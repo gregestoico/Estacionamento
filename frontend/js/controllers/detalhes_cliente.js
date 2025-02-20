@@ -8,7 +8,7 @@ class DetalhesClienteController{
             const clientes = await modelCliente.buscarMensalistas();
             
             detalhesClienteView.atualizarUI(clientes);
-    
+            
         } catch (error) {
             console.error('Erro ao carregar dados dos clientes:', error);
         }
