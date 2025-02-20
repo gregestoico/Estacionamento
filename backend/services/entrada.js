@@ -9,13 +9,9 @@ class ServiceEntrada {
         return await modelEntrada.findAll()
     }
 
-    async create(id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func) {
+    async create(placa_veic, cod_vaga, cpf_func) {
         // Valor cobrado e Hora de saída podem ser inseridos como nulos
-        if(!id_entrada) {
-            throw new Error("Favor informar o id da entrada")
-        } else if(!hora_entrada) {
-            throw new Error("Favor informar a hora de entrada")
-        } else if(!placa_veic) {
+        if(!placa_veic) {
             throw new Error("Favor informar a placa do veiculo")
         } else if(!cod_vaga) {
             throw new Error("Favor informar o codigo da vaga")
@@ -23,9 +19,12 @@ class ServiceEntrada {
             throw new Error("Favor informar o cpf do funcionario")
         }
 
-        return modelEntrada.create(id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func)
+        return modelEntrada.create(placa_veic, cod_vaga, cpf_func)
     }
-
+    async createWithCurrentTime(placa_veic, cod_vaga, cpf_func) {
+        //const hora_entrada = new Date().toISOString()
+        return await this.create(null, null, placa_veic, cod_vaga, cpf_func)
+    }
     async update(id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func) {
         const rowEntrada = await this.findById(id_entrada)
         if(!rowEntrada) {

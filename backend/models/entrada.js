@@ -22,11 +22,11 @@ class ModelEntrada{
     }
 
     /** Cadastra uma entrada no estacionamento */
-    async create(id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func){
+    async create(placa_veic, cod_vaga, cpf_func){
         // Array dos valores a serem inseridos
-        const args = [id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func];
+        const args = [placa_veic, cod_vaga, cpf_func];
         const sql = `
-            INSERT INTO Entrada (id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func) VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO Entrada (placa_veic, cod_vaga, cpf_func) VALUES (?, ?, ?)
         `;
         const [result] = await db.query(sql, args);
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas inseridas

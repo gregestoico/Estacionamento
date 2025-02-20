@@ -31,11 +31,14 @@ class ServiceMensalista {
             throw new Error("Cliente mensalista não encontrado")
         }
 
+        /** 
         // Substitui as informações atuais pelas novas informações (se forem passadas)
         rowMensalista.nome_cli = nome || rowMensalista.nome_func
         rowMensalista.email_cli = email || rowMensalista.email_cli
         rowMensalista.telefone_cli = telefone || rowMensalista.telefone_cli
         rowMensalista.cod_plano = cod_plano || rowMensalista.cod_plano
+        **/
+       
         return await modelMensalista.update(
             rowMensalista.cpf_cli,
             rowMensalista.nome_cli,

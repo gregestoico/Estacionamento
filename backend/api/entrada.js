@@ -24,8 +24,10 @@ class ApiEntrada {
 
     async create(req, res) {
         try {
-            const { id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func } = req.body
-            const result = await serviceEntrada.create(id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func)
+            const cpf_func = req.session.cpf
+            const { placa_veic, cod_vaga } = req.body
+            const valor_cobrado = null
+            const result = await serviceEntrada.create(placa_veic, cod_vaga, cpf_func)
 
             res.status(200).send({ result }) //Envia a resposta
         } catch (error) {
