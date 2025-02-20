@@ -20,17 +20,38 @@ export function criarClienteModal() {
                     <p><strong>Nome:</strong> <h3 style="text-align: center;" id="modalNome"></h3></p>
                     <p><strong>CPF:</strong> <span id="modalCPF"></span></p>
                     <p><strong>Email:</strong> <span id="modalEmail"></span></p>
-                    <p><strong>Telefone:</strong> <span id="modalEmail"></span></p>
+                    <p><strong>Telefone:</strong> <span id="modalTelefone"></span></p>
                     <p><strong>Código do Plano:</strong><span id="modalCodPlano"></span></p>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Excluir</button>
-                <button type="button" class="btn btn-primary">Atualizar</button>
+                <button type="button" class="btn btn-danger" id="modalExcluir">Excluir</button>
+                <button type="button" class="btn btn-primary" id="modalAtualizar">Atualizar</button>
                 </div>
             </div>
         </div>
     `;
 
+    async function excluirCliente(cpf_cli) {
+        try {
+            const response = await fetchApi('/mensalista/' + cpf_cli, 'DELETE');
+    
+            if (!response.ok) {
+                throw new Error('Erro ao excluir cliente');
+            }
+    
+            console.log('Cliente excluído com sucesso');
+            // Fechar o modal após a exclusão
+            const modal = document.getElementById('clienteModal');
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            modalInstance.hide();
+    
+            // Atualizar a UI ou redirecionar conforme necessário
+            // Por exemplo, recarregar a página:
+            location.reload();
+        } catch (error) {
+            console.error('Erro ao excluir cliente:', error);
+        }
+    }
 
     // Adiciona um evento de exibição do modal
     // Adiciona um evento ao modal de vaga para limpar os campos dinamicamente ao fechar 
@@ -46,41 +67,36 @@ export function criarClienteModal() {
         }
 
         // Obtém o cpf do cliente clicado
-        const cpf_func = card.id;
-        console.log('CPF do Cliente:', cpf_func); // debug
+        const cpf_cli = card.id;
+        console.log('CPF do Cliente:', cpf_cli); // debug
         
-        const response = await fetchApi('/entrada/cliente/' + cpf_func, 'GET');
+        const response = await fetchApi('/mensalista/' + cpf_cli, 'GET');
         const data = await response.json();
 
-        const entradas = data.entradas;
+        const mensalista = data.mensalista;
 
         // Verifica se a entrada foi encontrada
-        if(entradas === null) {
-            console.error('Entradas não encontradas');
+        if(mensalista === null) {
+            console.error('Mensalista não encontrado');
             return;
-        } else 
-        // Itera sobre as entradas do cliente
-        entradas.forEach(entrada => {
-            // Preenche o modal com as informações de id de cada entrada
-            document.getElementById('modal-body').innerHTML += `
-                <p class="bg-info bg-opacity-25">
-                    <strong>Id da entrada: </strong>
-                    <span id="modalId">${entrada.id_entrada}</span>
-                </p>
-            `;
+        }
+        document.getElementById('modalNome').textContent = mensalista.nome_cli;
+        document.getElementById('modalCPF').textContent = mensalista.cpf_cli;
+        document.getElementById('modalEmail').textContent = mensalista.email_cli;
+        document.getElementById('modalTelefone').textContent = mensalista.telefone_cli;
+        document.getElementById('modalCodPlano').textContent = mensalista.cod_plano;
 
-        });
-        document.getElementById('modalNome').textContent = card.getAttribute('data-nome');
-        document.getElementById('modalCPF').textContent = card.getAttribute('data-CPF');
-        document.getElementById('modalCargo').textContent = card.getAttribute('data-cargo');
+        document.getElementById('modalExcluir').addEventListener('click', () => excluirCliente(cpf_cli));
     });
+
+
 
     // Adiciona um evento ao modal de vaga para limpar os campos dinamicamente ao fechar 
     modal.addEventListener('hidden.bs.modal', function () {
         const entradaElement = document.getElementById('modalId');
         const modalNome = document.getElementById('modalNome');
         const modalCPF = document.getElementById('modalCPF');
-        const modalCargo = document.getElementById('modalCargo');
+        const modalEmail = document.getElementById('modalCargo');
 
         // Exluindo os campos de entrada criados
         if (entradaElement) {
@@ -93,5 +109,8 @@ export function criarClienteModal() {
 
         // Retorna o modal
     });
+
+
+
     return modal;
 }
