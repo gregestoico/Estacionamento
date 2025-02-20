@@ -43,7 +43,7 @@ export function criarVagaModal() {
         }
 
         // Obtém o código da vaga clicada
-        const codigo = card.id.replace('vaga', '');
+        const codigo = card.getAttribute('data-codigo');
         console.log('Código da vaga:', codigo); // debug
         
         const response = await fetchApi('/entrada/vaga/' + codigo, 'GET');
@@ -51,35 +51,37 @@ export function criarVagaModal() {
 
         const entrada = data.entrada;
 
-        // Verifica se a entrada foi encontrada
-        if(entrada === null) {
+        // Verifica se existe uma entrada em aberto associada a essa vaga
+        if(Array.isArray(entrada) && entrada.length === 0) {
             console.error('Entrada não encontrada');
-            return;
         } else if (entrada.cpf_cli) { // Verifica se um cliente mensalista ocupou a vaga
             // Preenche o modal com as adicionais do cliente
-            document.getElementById('modal-body').innerHTML += `
-                <p id="modalCpfCli" class="bg-info bg-opacity-25"><strong>CPF do cliente:</strong> <span>${entrada.cpf_cli}</span></p>
-                <p id="modalNome" class="bg-info bg-opacity-25"><strong>Nome cliente:</strong> <span id="modalNome">${entrada.nome_cli}</span></p>
-            `;
+            modal.querySelector('#modal-body').innerHTML += `
+            <div class="bg-info bg-opacity-25">
+                <p><strong>Cliente Mensalista</strong></p>
+                <p id="modalCpfCli"><strong>CPF do cliente:</strong> <span>${entrada.cpf_cli}</span></p>
+                <p id="modalNome"><strong>Nome cliente:</strong> <span id="modalNome">${entrada.nome_cli}</span></p>
+            </div>`;
         }
+        // Preenche o modal com as informações somente da vaga
+        modal.querySelector('#modalCodigo').textContent = card.getAttribute('data-codigo');
+        modal.querySelector('#modalTipo').textContent = card.getAttribute('data-tipo');
+        modal.querySelector('#modalSituacao').textContent = card.getAttribute('data-situacao');
 
-        // Preenche o modal com as informações da entrada
-        document.getElementById('modalCodigo').textContent = entrada.cod_vaga || card.getAttribute('data-codigo');
-        document.getElementById('modalTipo').textContent = entrada.tipo_veic || card.getAttribute('data-tipo');
-        document.getElementById('modalSituacao').textContent = entrada.situacao || card.getAttribute('data-situacao');
     });
 
     // Adiciona um evento ao modal de vaga para limpar os campos dinamicamente ao fechar 
     modal.addEventListener('hidden.bs.modal', function () {
-        const cpfCliElement = document.getElementById('modalCpfCli');
-        const nomeCliElement = document.getElementById('modalNome');
+        const cpfCliElement = modal.querySelector('#modalCpfCli');
+        const nomeCliElement = modal.querySelector('#modalNome');
+        const codigoElement = modal.querySelector('#modalCodigo');
+        const modalCodigo = modal.querySelector('#modalCodigo');
+        const modalTipo = modal.querySelector('#modalTipo');
+        const modalSituacao = modal.querySelector('#modalSituacao');
 
         // Exluindo os campos criados
         if (cpfCliElement) {
             cpfCliElement.parentElement.remove();
-        }
-        if (nomeCliElement) {
-            nomeCliElement.parentElement.remove();
         }
         // Limpa os campos fixos do modal
         modalCodigo.textContent = '';

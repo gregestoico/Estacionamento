@@ -51,6 +51,34 @@ class ServiceFatura {
 
         return modelFatura.delete(cod_fatura);
     }
+
+    async pagarFatura(cod_fatura) {
+        const rowFatura = await this.findByCod(cod_fatura)
+        if(!rowFatura) {
+            throw new Error("Fatura não encontrada")
+        }
+
+        return modelFatura.updateHoraAtual(cod_fatura)
+    }
+
+    async faturamento(cpf_cli, startDate) {
+        return await modelFatura.faturamento(cpf_cli, startDate);
+    }
+
+    async faturamentoMensalistas(valorMinimo) {
+        if (!valorMinimo) {
+            valorMinimo = 0;
+        }
+        return await modelFatura.faturamentoMensalistas(valorMinimo);
+    }
+
+    async faturasDeFaturamentoMin(valorMinimo) {
+        if (!valorMinimo) {
+            valorMinimo = 0;
+        }
+        return await modelFatura.faturasDeFaturamentoMin(valorMinimo);
+    }
+
 }
 
 module.exports = new ServiceFatura()

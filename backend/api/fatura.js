@@ -56,6 +56,50 @@ class ApiFatura {
             res.status(500).send({ msg: error.message })
         }
     }
+
+    async pagarFatura(req, res) {
+        try {
+            const cod_fatura = req.params.cod
+            const result = await serviceFatura.pagarFatura(cod_fatura)
+
+            res.status(200).send({ result }) //Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+    }
+
+    async faturamento(req, res) {
+        try {
+            const { cpf_cli, startDate } = req.body;
+            const faturamento = await serviceFatura.faturamento(cpf_cli, startDate);
+
+            res.status(200).send( faturamento ); // Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message });
+        }
+    }
+
+    async faturamentoMensalistas(req, res) {
+        try {
+            const { valorMinimo } = req.body;
+            const faturamentos = await serviceFatura.faturamentoMensalistas(valorMinimo);
+
+            res.status(200).send({ faturamentos }); // Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message });
+        }
+    }
+
+    async faturasDeFaturamentoMin(req, res) {
+        try {
+            const { valorMinimo } = req.body;
+            const faturas = await serviceFatura.faturasDeFaturamentoMin(valorMinimo);
+
+            res.status(200).send({ faturas }); // Envia a resposta
+        } catch (error) {
+            res.status(500).send({ msg: error.message });
+        }
+    }
 }
 
 module.exports = new ApiFatura();

@@ -39,16 +39,42 @@ export async function criarFaturaView(faturas) {
                 <small>${fatura.data_venc}</small>
             </div>
             <p class="mb-1">Cliente: ${fatura.cpf_cli}</p>
-            <p class="mb-1">Valor: R$ ${Number(fatura.valor).toFixed(2)}</p>
-            <p class="mb-1">Data de Pagamento: ${fatura.data_pag ? fatura.data_pag : 'Não Pago'}</p>
+            <p class="mb-1">Valor: R$ ${Number(fatura.preco_mensal).toFixed(2)}</p>
+            <p class="mb-1">Data de Pagamento: ${fatura.data_pag ? fatura.data_pag : '<strong>Não Pago</strong>'}</p>
+            ${!fatura.data_pag ? `
+                <div class="d-flex justify-content-between align-items-center">
+                    <i class="bi bi-exclamation-circle text-danger"></i>
+                    <button class="btn btn-success confirmar-pagamento-btn" data-cod_fatura="${fatura.cod_fatura}">Confirmar Pagamento</button>
+                </div>
+            ` : ''}
         `;
         faturaList.appendChild(faturaItem);
 
         if (fatura.data_pag) {
-            faturamentoTotal += Number(fatura.valor);
+            faturamentoTotal += Number(fatura.preco_mensal);
         }
     });
 
     faturamentoValue.textContent = faturamentoTotal.toFixed(2);
 
+    // Adiciona evento aos botões de confirmar pagamento
+    document.querySelectorAll('.confirmar-pagamento-btn').forEach(button => {
+        button.addEventListener('click', async function () {
+            const cod_fatura = this.getAttribute('data-cod_fatura');
+            const confirmacao = confirm('Você tem certeza que deseja confirmar o pagamento desta fatura?');
+
+            if (confirmacao) {
+                const response = await fetchApi('/fatura/pagar/' + cod_fatura, 'PUT', {
+                    data_pag: new Date().toISOString().split('T')[0] // Data atual no formato YYYY-MM-DD
+                });
+
+                if (response.ok) {
+                    alert('Pagamento confirmado com sucesso!');
+                    location.reload();
+                } else {
+                    alert('Erro ao confirmar o pagamento.');
+                }
+            }
+        });
+    });
 }
