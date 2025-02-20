@@ -1,7 +1,7 @@
 
 /* <div class="mb-3">
 <label for="cpf" class="form-label">CPF</label>
-<input type="text" id="cpf" name="cpf" class="form-control" required>
+<input type="text" id="cpf" name="cpf" placeholder="CPF" class="form-control" required>
 </div>
 <div class="mb-3">
 <label for="name" class="form-label">Nome</label>
@@ -27,7 +27,7 @@
  */
 export function criarInputElement(id, type, label, placeholder=''){
     const div = document.createElement('div') ;
-    div.className = 'mb-3 form-floating';
+    div.className = 'mb-3 form-floating input-container';
     div.innerHTML = `
         <input type="${type}" id="${id}" name="${id}" class="form-control" placeholder="${placeholder}" required>
         <label for="${id}" class="form-label">${label}</label>
