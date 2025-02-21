@@ -24,7 +24,7 @@ export async function criarFaturaContainer(faturas) {
     filterContainer.appendChild(filterInput);
 
     const filterButton = document.createElement('button');
-    filterButton.className = 'btn btn-primary mt-2 highlight';
+    filterButton.className = 'btn btn-primary highlight my-3';
     filterButton.textContent = 'Filtrar';
     filterContainer.appendChild(filterButton);
 

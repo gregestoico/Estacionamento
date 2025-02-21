@@ -62,7 +62,7 @@ class ServiceFatura {
             throw new Error("Fatura não encontrada")
         }
 
-        return modelFatura.updateHoraAtual(cod_fatura)
+        return modelFatura.pagarFatura(cod_fatura)
     }
 
     async faturamento(cpf_cli) {

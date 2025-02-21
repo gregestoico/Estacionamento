@@ -65,10 +65,10 @@ class ModelFatura{
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas
     }
 
-    async updateHoraAtual(cod_fatura){
+    async pagarFatura(cod_fatura){
         const args = [cod_fatura];
         const sql = `
-            UPDATE Fatura SET data_pag = NOW() WHERE cod_fatura = ?
+            CALL AtualizarFaturaEInserirProxima(?, DATE(NOW()));
         `;
         const [result] = await db.query(sql, args);
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas
