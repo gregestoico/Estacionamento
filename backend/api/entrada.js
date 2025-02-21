@@ -26,8 +26,9 @@ class ApiEntrada {
         try {
             // Lê o cpf do funcionário no token
             const cpf_func = req.session.cpf
-            const { id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga } = req.body
-            const result = await serviceEntrada.create(id_entrada, hora_entrada, hora_saida, valor_cobrado, placa_veic, cod_vaga, cpf_func)
+            console.log('CHEGOU AQUI NA API')
+            const { placa_veic, cod_vaga } = req.body
+            const result = await serviceEntrada.create(placa_veic, cod_vaga, cpf_func)
 
             res.status(200).send({ result }) //Envia a resposta
         } catch (error) {

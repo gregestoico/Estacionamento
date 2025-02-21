@@ -42,6 +42,8 @@ class ModelEntrada{
         return { linhasAfetadas: result.affectedRows}; // Retorna o número de linhas atualizadas
     }
 
+    
+
     /** Exclui uma entrada registrada */
     async delete(id_entrada){
         const args = [id_entrada];

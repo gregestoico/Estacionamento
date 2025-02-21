@@ -36,48 +36,64 @@ export function criarVagaModal() {
 
     // Adiciona os event listeners após criar o modal
     const inserirEntradaBtn = modal.querySelector('#inserirEntrada');
-    inserirEntradaBtn.addEventListener('click', function () {
+    inserirEntradaBtn.addEventListener('click', async function () {
         // Lógica para inserir entrada
         const placa = modal.querySelector('#modalPlaca').value;
         const codigo = modal.querySelector('#modalCodigo').textContent;
         
-        if (!placa) {
-            alert('Por favor, insira a placa do veículo.');
-            return;
-        }
 
         const entradaData = {
             cod_vaga: codigo,
             placa_veic: placa,
         };
 
-        fetchApi('/entrada', 'POST', entradaData)
-            .then(response => response.json())
-            .then(data => {
-            if (data.success) {
-                alert('Entrada inserida com sucesso!');
-                // Atualiza o modal ou a interface conforme necessário
-            } else {
+        try{
+            const response = await fetchApi('/entrada', 'POST', entradaData) 
+            if (!response.ok){
                 alert('Erro ao inserir entrada: ' + data.message);
             }
-            })
-            .catch(error => {
+            else{
+                    alert('Entrada inserida com sucesso!');
+                    // Atualiza o modal ou a interface conforme necessário
+                    location.reload();
+                }
+        }catch(error) {
             console.error('Erro ao inserir entrada:', error);
             alert('Erro ao inserir entrada. Por favor, tente novamente.');
-            });
+            };
         console.log('Inserir Entrada clicado');
     });
 
     const realizarSaidaBtn = modal.querySelector('#realizarSaida');
     realizarSaidaBtn.addEventListener('click', function () {
         // Lógica para realizar saída
+        const codigo = modal.querySelector('#modalCodigo').textContent;
+
+        const saidaData = {
+            cod_vaga: codigo,
+        };
+
+        fetchApi('/saida', 'POST', saidaData)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Saída realizada com sucesso!');
+                    // Atualiza o modal ou a interface conforme necessário
+                } else {
+                    alert('Erro ao realizar saída: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao realizar saída:', error);
+                alert('Erro ao realizar saída. Por favor, tente novamente.');
+            });
         console.log('Realizar Saída clicado');
     });
 
 
-    const modalFooter = modal.querySelector('.modal-footer');
-    modalFooter.appendChild(inserirEntradaBtn);
-    modalFooter.appendChild(realizarSaidaBtn);
+    // const modalFooter = modal.querySelector('.modal-footer');
+    // modalFooter.appendChild(inserirEntradaBtn);
+    // modalFooter.appendChild(realizarSaidaBtn);
 
 
     // Adiciona um evento de exibição do modal
@@ -107,9 +123,11 @@ export function criarVagaModal() {
             console.error('Entrada não encontrada');
             realizarSaidaBtn.disabled = true;
             inserirEntradaBtn.disabled = false;
+
         } else if (entrada.cpf_cli) { // Verifica se um cliente mensalista ocupou a vaga
             realizarSaidaBtn.disabled = false;
             inserirEntradaBtn.disabled = true;
+            modal.querySelector('#modalPlaca').value = entrada.placa_veic.value;
             // Preenche o modal com as adicionais do cliente
             modal.querySelector('#modal-body').innerHTML += `
             <div class="bg-info bg-opacity-25">
@@ -117,6 +135,11 @@ export function criarVagaModal() {
                 <p id="modalCpfCli"><strong>CPF do cliente:</strong> <span>${entrada.cpf_cli}</span></p>
                 <p id="modalNome"><strong>Nome cliente:</strong> <span id="modalNome">${entrada.nome_cli}</span></p>
             </div>`;
+
+        } else if (entrada.placa_veic) {
+            realizarSaidaBtn.disabled = false;
+            inserirEntradaBtn.disabled = true;
+            modal.querySelector('#modalPlaca').value = entrada.placa_veic;
         }
         // Preenche o modal com as informações somente da vaga
         modal.querySelector('#modalCodigo').textContent = card.getAttribute('data-codigo');
